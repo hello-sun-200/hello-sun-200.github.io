@@ -5,196 +5,603 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kicked Rotor Reproduction — ~</title>
 <link rel="stylesheet" href="../style.css">
+<style>
+  pre { font-size:0.82rem; line-height:1.5; }
+  .step { color:var(--muted); font-size:0.85rem; margin-bottom:0.3rem; }
+</style>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 <a href="../reproductions.html" class="back">&larr; reproductions</a>
 
 <article>
-  <h1>Numerical Reproduction of Rozenbaum, Ganeshan &amp; Galitski</h1>
-  <p class="authors"><em>Phys. Rev. Lett.</em> 118, 086801 (2017) &middot; May 2026</p>
+<h1>Lyapunov Exponent and Out-of-Time-Ordered Correlator's Growth Rate in a Chaotic System</h1>
+<p class="authors">Rozenbaum, Ganeshan &amp; Galitski &middot; <em>Phys. Rev. Lett.</em> <strong>118</strong>, 086801 (2017)</p>
 
-  <h2>Abstract</h2>
-  <p>
-    We present a complete numerical reproduction of Rozenbaum, Ganeshan &amp; Galitski (2017),
-    which established that the out-of-time-ordered correlator (OTOC) growth rate (CGR) is
-    fundamentally distinct from the classical Lyapunov exponent (LE) in the kicked rotor.
-    All five figures of the original paper are reproduced with full quantum Floquet-operator
-    evolution (Figs. 1&ndash;3), classical tangent-map methods (Figs. 2, 5), and long-time
-    quantum dynamics in the localized regime (Fig. 4).
-  </p>
+<p>
+The paper establishes that the out-of-time-ordered correlator (OTOC) growth rate (CGR)
+is <strong>fundamentally distinct</strong> from the classical Lyapunov exponent (LE) in
+the kicked rotor. This reproduction recovers all five figures with full quantum
+Floquet-operator evolution and classical tangent-map methods.
+</p>
 
-  <h2>Physical Model</h2>
+<!-- ========================================================================== -->
+<h2>1. Classical Kicked Rotor</h2>
+<!-- ========================================================================== -->
 
-  <h3>Kicked Rotor Hamiltonian</h3>
-  <p>
-    The dimensionless Hamiltonian of the quantum kicked rotor (QKR) is
-    \[
-    \hat{H} = \frac{\hat{p}^{2}}{2} + K\cos(\hat{x})\,\Delta(t),\qquad
-    \Delta(t)=\sum_{j=-\infty}^{\infty}\delta(t-j),
-    \]
-    where \(\hat{p}=-i\hbar_{\rm eff}\,\partial/\partial\hat{x}\) and \(\hat{x}\in[0,2\pi)\).
-    Two parameters control the physics: the kicking strength \(K\) and the dimensionless
-    effective Planck constant \(\hbar_{\rm eff}\).
-  </p>
+<h3>Induction &amp; Deduction</h3>
 
-  <h3>Classical Standard Map</h3>
-  <p>
-    Integrating Hamilton's equations over one kick yields the Chirikov&ndash;Taylor standard map:
-    \[
-    p_{n+1} = p_n + K\sin x_n,\qquad
-    x_{n+1} = x_n + p_{n+1} \pmod{2\pi}.
-    \]
-    At \(K \lesssim K_{\rm cr}\approx 0.97\) the dynamics are predominantly regular (KAM tori intact);
-    above this threshold global chaos emerges.
-  </p>
+<p>
+The kicked rotor is a particle on a ring subjected to periodic delta-function kicks.
+The dimensionless Hamiltonian is
+\[
+\hat{H} = \frac{\hat{p}^2}{2} + K\cos(\hat{x})\sum_{j=-\infty}^{\infty}\delta(t-j),
+\]
+with \(\hat{x}\in[0,2\pi)\). Two parameters control the physics: the kicking strength
+\(K\) and the effective Planck constant \(\hbar_{\rm eff}\).
+</p>
 
-  <h3>Quantum Floquet Operator</h3>
-  <p>
-    Stroboscopic evolution over one kick is governed by
-    \[
-    \hat{F}=e^{-i\hat{p}^{2}/2\hbar_{\rm eff}}\;e^{-iK\cos(\hat{x})/\hbar_{\rm eff}},
-    \]
-    applied in split-step: the kinetic part is diagonal in momentum basis \(\{|n\rangle\}\),
-    the potential part is diagonal in position basis via DFT. The initial state is a
-    Gaussian wave packet in momentum space with \(p_0=0\) and \(\sigma=4\).
-  </p>
+<p>
+Integrating Hamilton's equations over one period yields the <strong>Chirikov&ndash;Taylor
+standard map</strong>:
+\[
+p_{n+1}=p_n+K\sin x_n,\qquad x_{n+1}=x_n+p_{n+1}\pmod{2\pi}.
+\]
+Below \(K_{\rm cr}\approx0.97\), KAM tori confine the motion (regular dynamics);
+above this threshold, the last invariant torus breaks and global chaos emerges.
+</p>
 
-  <h2>Key Quantities</h2>
+<h3>Pseudocode</h3>
+<pre>function standard_map_step(x, p, K):
+    p' = p + K * sin(x)
+    x' = x + p'
+    return (x' mod 2π, p' mod 2π)
 
-  <h3>OTOC and Two-Point Correlator</h3>
-  <p>
-    \[
-    C(t)=-\big\langle\!\big[\hat{p}(t),\hat{p}(0)\big]^{2}\big\rangle,\qquad
-    B(t)={\rm Re}\,\big\langle\hat{p}(t)\,\hat{p}(0)\big\rangle,
-    \]
-    where \(\hat{p}(t)=\hat{F}^{-t}\hat{p}\,\hat{F}^{t}\) is the Heisenberg-picture momentum operator.
-  </p>
+function iterate(x0, p0, K, n_steps):
+    xs[0], ps[0] = x0, p0
+    for i = 1..n_steps:
+        xs[i], ps[i] = standard_map_step(xs[i-1], ps[i-1], K)
+    return xs, ps</pre>
 
-  <h3>Classical Lyapunov Exponent</h3>
-  <p>
-    \[
-    \lambda=\bigg\langle\!\!\!\bigg\langle\;
-    \lim_{t\to\infty}\lim_{d(0)\to 0}\frac{1}{t}\ln\frac{d(t)}{d(0)}
-    \bigg\rangle\!\!\!\bigg\rangle,
-    \]
-    where \(d(t)=\sqrt{[\Delta x(t)]^{2}+[\Delta p(t)]^{2}}\).
-    Numerically computed via the tangent map.
-  </p>
+<h3>Python Implementation</h3>
+<pre>@njit
+def standard_map_step(x, p, K):
+    p_new = p + K * np.sin(x)
+    x_new = x + p_new
+    return x_new % (2 * np.pi), p_new % (2 * np.pi)
 
-  <h3>Classical OTOC and the CGR</h3>
-  <p>
-    The classical correspondence of the OTOC is
-    \[
-    C_{\rm cl}(t)=\hbar_{\rm eff}^{2}\;
-    \bigg\langle\!\!\!\bigg\langle\!
-    \left(\frac{\Delta p(t)}{\Delta x(0)}\right)^{2}\!
-    \bigg\rangle\!\!\!\bigg\rangle\sim e^{2\tilde{\lambda}t}.
-    \]
-    <strong>Crucially,</strong> \(\tilde{\lambda}\neq\lambda\) because of the different order
-    of averaging and logarithm: \(\tilde{\lambda}\sim\ln\langle\cdot\rangle\) versus
-    \(\lambda\sim\langle\ln(\cdot)\rangle\). Jensen's inequality guarantees
-    \(\tilde{\lambda}>\lambda\) for all non-trivial \(K\).
-  </p>
 
-  <h3>Ehrenfest-Time Singularity (Fig. 3)</h3>
-  <p>
-    The logarithmic derivative \(d(t)\equiv[\ln C(t)-\ln C(t-1)]/2\) eliminates the
-    \(\hbar_{\rm eff}^{2}\) prefactor. At \(t < t_{\rm E}\), \(d(t)\approx\tilde{\lambda}\)
-    (flat plateau). At \(t = t_{\rm E}\sim|\ln\hbar_{\rm eff}|/\ln(K/2)\), quantum interference
-    sets in, and \(d(t)\) decays as a power law.
-  </p>
+@njit
+def iterate_standard_map(x0, p0, K, n_steps):
+    x, p = x0, p0
+    xs, ps = np.empty(n_steps + 1), np.empty(n_steps + 1)
+    xs[0], ps[0] = x, p
+    for i in range(n_steps):
+        x, p = standard_map_step(x, p, K)
+        xs[i + 1] = x
+        ps[i + 1] = p
+    return xs, ps</pre>
 
-  <h2>Numerical Methods</h2>
+<!-- ========================================================================== -->
+<h2>2. Tangent Map &amp; Lyapunov Exponent</h2>
+<!-- ========================================================================== -->
 
-  <h3>Classical Computation</h3>
-  <p>
-    Standard map iteration with tangent map for Lyapunov exponent. Monte Carlo sampling
-    (\(2\times10^{5}\) trajectories) for classical CGR, with the critical insight that
-    \(\langle\eta^{2}(t)\rangle\) must be averaged over trajectories <strong>first</strong>,
-    then the log-ratio taken — otherwise the Jensen-inequality error is introduced.
-  </p>
+<h3>Induction &amp; Deduction</h3>
+<p>
+The Lyapunov exponent quantifies the exponential divergence of initially close
+trajectories:
+\[
+\lambda = \bigg\langle\!\!\!\bigg\langle\;
+\lim_{t\to\infty}\lim_{d(0)\to 0}\frac{1}{t}\ln\frac{d(t)}{d(0)}
+\bigg\rangle\!\!\!\bigg\rangle,
+\]
+where \(d(t)=\sqrt{[\Delta x(t)]^2+[\Delta p(t)]^2}\). The tangent map propagates
+an infinitesimal separation vector \((\eta,\xi)\):
+\[
+\begin{pmatrix}\eta_{n+1}\\ \xi_{n+1}\end{pmatrix}
+= \begin{pmatrix}1 & K\cos x_n\\ 1 & 1+K\cos x_n\end{pmatrix}
+\begin{pmatrix}\eta_n\\ \xi_n\end{pmatrix}.
+\]
+To prevent numerical overflow, the tangent vector is periodically <strong>renormalized</strong>
+and the log-ratio accumulated.
+</p>
 
-  <h3>Quantum OTOC (Figs. 1&ndash;3)</h3>
-  <p>
-    Forward&ndash;backward Floquet evolution with adaptive basis size:
-    \[
-    N = 2^{\lceil\log_{2}(\alpha\cdot\max(p_{\rm rms},\,2\sigma)/\hbar_{\rm eff})\rceil},
-    \]
-    with safety factor \(\alpha=2.5\)&ndash;\(4\). For \(K=1000\) at \(\hbar_{\rm eff}=2^{-14}\),
-    \(N=2^{26}\approx6.7\times10^{7}\). The \(\mathcal{O}(T^{2})\) cost arises from the nested
-    loop over backward steps: \(\sum_{k=1}^{T}2(T-k+1)=T(T+1)\) backward Floquet applications.
-  </p>
+<h3>Pseudocode</h3>
+<pre>function lyapunov_at_point(x0, p0, K, n_steps):
+    tan = [0.0, 1e-12]; d_norm = 1e-12
+    lam_sum = 0; count = 0
+    for step in 1..n_steps:
+        x, p = standard_map_step(x, p, K)
+        η, ξ = tan[0], tan[1]
+        η' = η + K·cos(x)·ξ
+        ξ' = ξ + η'
+        tan = [η', ξ']
+        dist = sqrt(η'² + ξ'²)
+        if dist > 1e-12 and step > 0:
+            lam_sum += log(dist / d_norm); count += 1
+            tan /= dist; d_norm = 1.0
+    return lam_sum / count
 
-  <h3>Long-Time Correlator (Fig. 4)</h3>
-  <p>
-    At \(\hbar_{\rm eff}=1\) (dynamically localized regime), basis is \(N=16\) (32 states).
-    Forward-only evolution, \(\mathcal{O}(\tau N\log N)=\mathcal{O}(\tau)\) cost.
-    \(\tau=3\times10^{6}\) completes in \(\sim1\) s per \(K\) value.
-  </p>
+# Global LE = phase-space average over uniform grid
+function lyapunov_phase_space(K, n_steps, n_grid):
+    for each (x0, p0) in n_grid × n_grid on [0,2π)²:
+        λ_map[p0, x0] = lyapunov_at_point(x0, p0, K, n_steps)
+    return λ_map</pre>
 
-  <h2>Reproduced Figures</h2>
+<h3>Python Implementation</h3>
+<pre>@njit
+def tangent_map_step(tan_vec, K, cos_x):
+    eta, xi = tan_vec[0], tan_vec[1]
+    eta_new = eta + K * cos_x * xi
+    xi_new = xi + eta_new
+    return np.array([eta_new, xi_new])
 
-  <h3>Fig. 1 &mdash; OTOC and Two-Point Correlator</h3>
-  <p>
-    \(\hbar_{\rm eff}=2^{-14}\), \(\sigma=4\), \(p_0=0\). Adaptive basis \(N\in[2^{19},2^{21}]\),
-    30 kicks, 5-ensemble average. Upper panel: \(C(t)\) (semilog). Lower panel: \(B(t)\) (linear).
-    The EW \(\sim9\) min, \(\sim4\) GB memory.
-  </p>
 
-  <h3>Fig. 2 &mdash; CGR versus LE</h3>
-  <p>
-    Four curves: quantum CGR from Floquet-evolved \(C(t)\) at \(\hbar_{\rm eff}=2^{-14}\)
-    (red circles, 29 \(K\) values); classical CGR via tangent-map MC (green solid, 80 \(K\));
-    classical LE via tangent-map grid (blue triangles); Chirikov formula \(\lambda\approx\ln(K/2)\)
-    (black dashed). The CGR exceeds the LE for all \(K\), with difference largest near \(K_{\rm cr}\).
-    Wall time \(\sim2\) min classical + \(\sim2\) min quantum.
-  </p>
+@njit
+def compute_lyapunov_at_point(x0, p0, K, n_steps):
+    d0 = 1e-12
+    tan = np.array([0.0, d0])
+    d_norm = d0
+    lam_sum = 0.0; count = 0
+    x, p = x0, p0
 
-  <h3>Fig. 3 &mdash; Ehrenfest-Time Singularity</h3>
-  <img src="fig3.png" alt="Fig. 3: Logarithmic derivative d(t) vs t" style="display:block;margin:1rem auto;max-width:100%;">
-  <p>
-    Logarithmic derivative \(d(t)\) vs. \(t\) (log-log). Flat plateau \(=\) CGR; downward slope
-    \(=\) power-law regime. \(\hbar_{\rm eff}=2^{-14}\). \(K=3\) required 100 kicks
-    (\(N=2^{20}\), \(\sim32\) min) to observe the full transition. \(K=10\) used 30-kick
-    Fig. 1 data.
-  </p>
+    for step in range(n_steps):
+        x, p = standard_map_step(x, p, K)
+        tan = tangent_map_step(tan, K, np.cos(x))
+        new_dist = np.sqrt(tan[0]**2 + tan[1]**2)
+        if new_dist > 1e-12 and step > 0:
+            lam_sum += np.log(new_dist / d_norm)
+            count += 1
+            tan = tan / new_dist
+            d_norm = 1.0
 
-  <h3>Fig. 4 &mdash; Long-Time Averaged Correlator</h3>
-  <p>
-    \(\bar{B}_{\tau}(K)\) at \(\hbar_{\rm eff}=1\) for \(\tau=3\times10^{4},3\times10^{5},3\times10^{6}\).
-    Sharp step at \(K_{\rm cr}\approx0.97\) traces the classical regular-to-chaotic transition
-    even deep in the quantum regime. Larger \(\tau\) sharpens the step. \(\sim80\) s for 3 \(\tau\) values.
-  </p>
+    return lam_sum / count if count > 0 else 0.0
 
-  <h3>Fig. 5 &mdash; Classical LE in Polar Representation</h3>
-  <p>
-    \(\lambda(x,p)\) at \(K=1\) (just above \(K_{\rm cr}\)) on a \(200\times200\) grid,
-    \(p\in[-16,16]\), 400 kicks per point. Polar coordinates \((\theta=x, r=p+16)\)
-    reveal the mixed phase space: regular KAM islands (\(\lambda\approx0\), blue) embedded
-    in a chaotic sea (\(\lambda>0\), yellow). \(\sim3\) min.
-  </p>
 
-  <h2>Resource Assessment</h2>
-  <p>
-    Complete reproduction of all five figures requires approximately
-    <strong>45 minutes</strong> wall time (parallel execution), <strong>50 GB</strong> peak memory
-    (Fig. 2 large-\(K\) quantum tasks), and &lt;100 MB disk. Parallelized over independent
-    \(K\) values and ensemble members via <code>multiprocessing.Pool</code>, with near-linear
-    speedup up to 192 CPU cores on the h100 node.
-  </p>
+def compute_lyapunov_phase_space(K, n_steps=500, n_grid=200):
+    xs_grid = np.linspace(0, 2*np.pi, n_grid)
+    ps_grid = np.linspace(0, 2*np.pi, n_grid)
+    lam_map = np.zeros((n_grid, n_grid))
+    for i, x0 in enumerate(xs_grid):
+        for j, p0 in enumerate(ps_grid):
+            lam_map[j, i] = compute_lyapunov_at_point(x0, p0, K, n_steps)
+    return xs_grid, ps_grid, lam_map</pre>
 
-  <h2>Project Files</h2>
-  <ul>
-    <li><code>kicked_rotor.py</code> &mdash; Core library: standard map, tangent map, Floquet evolution, OTOC, Chirikov formula</li>
-    <li><code>run_fig1.py / plot_fig1.py</code> &mdash; Quantum OTOC \(C(t)\) and \(B(t)\) (5 \(K\), adaptive basis, ensemble avg)</li>
-    <li><code>run_fig2.py / plot_fig2.py</code> &mdash; Classical LE + CGR (80 \(K\), grid + MC), Chirikov formula</li>
-    <li><code>run_fig2_quantum.py</code> &mdash; Quantum CGR extraction (29 \(K\), adaptive kicks and basis)</li>
-    <li><code>run_fig2_largeK.py</code> &mdash; Large-\(K\) quantum CGR (\(K=200,500,1000\), \(N\) up to \(2^{26}\))</li>
-    <li><code>run_fig3.py / plot_fig3.py</code> &mdash; Logarithmic derivative \(d(t)\) (\(K=3,4,7,10\), 100 kicks)</li>
-    <li><code>run_fig4.py / plot_fig4.py</code> &mdash; Long-time averaged correlator (\(\hbar_{\rm eff}=1\), \(\tau\leq3\times10^{6}\))</li>
-    <li><code>run_fig5.py / plot_fig5.py</code> &mdash; Classical LE in polar representation (\(K=1\))</li>
-  </ul>
+<!-- ========================================================================== -->
+<h2>3. Classical CGR &mdash; the OTOC Growth Rate</h2>
+<!-- ========================================================================== -->
+
+<h3>Induction &amp; Deduction</h3>
+<p>
+The classical correspondence of the OTOC is
+\[
+C_{\rm cl}(t)=\hbar_{\rm eff}^2\;
+\bigg\langle\!\!\!\bigg\langle\!
+\left(\frac{\Delta p(t)}{\Delta x(0)}\right)^{2}\!
+\bigg\rangle\!\!\!\bigg\rangle \sim e^{2\tilde{\lambda}t},
+\]
+where \(\Delta p(t)\) is obtained from the tangent map with initial condition
+\(\eta(0)=0,\xi(0)=1\) (a unit perturbation in position). The CGR \(\tilde{\lambda}\)
+is <strong>not</strong> the Lyapunov exponent \(\lambda\) because of the different
+order of operations:
+\[
+\tilde{\lambda} \sim \ln\langle\eta^2\rangle \quad\text{vs.}\quad
+\lambda \sim \langle\ln d\rangle.
+\]
+By Jensen's inequality, \(\tilde{\lambda}>\lambda\) for all non-trivial \(K\).
+The correct computation <strong>must</strong> average \(\eta^2(t)\) over trajectories
+<em>first</em>, then take the log-ratio.
+</p>
+
+<h3>Pseudocode</h3>
+<pre># CORRECT: average first, then log-ratio
+function compute_cgr(K, n_steps, n_traj):
+    eta2_sum[t] = 0  for t in 0..n_steps
+
+    for each trajectory in 1..n_traj:
+        x, p = random point on [0,2π)²
+        tan = [0.0, 1.0]   # η(0)=0, ξ(0)=1
+        for step in 1..n_steps:
+            x, p = standard_map_step(x, p, K)
+            tan = tangent_map_step(tan, K, cos(x))
+            eta2_sum[step] += tan[0]²
+
+    eta2_avg[t] = eta2_sum[t] / n_traj  for all t
+    cgr = 0.5 * mean(log(eta2_avg[1:] / eta2_avg[:-1]))
+    return cgr
+
+# WRONG: log first, then average  (introduces Jensen error)
+# lam_traj = mean(log(eta2[1:]/eta2[:-1])); cgr_wrong = mean(lam_traj)</pre>
+
+<h3>Python Implementation</h3>
+<pre>@njit
+def compute_ccl_and_lam(K, n_steps=300, n_grid=200, heff=2**(-14)):
+    xs_grid = np.linspace(0, 2*np.pi, n_grid)
+    ps_grid = np.linspace(0, 2*np.pi, n_grid)
+
+    ccl_sum = np.zeros(n_steps + 1)
+    lam_sum = 0.0; count = 0
+    lam_grid = np.zeros((n_grid, n_grid))
+
+    for i, x0 in enumerate(xs_grid):
+        for j, p0 in enumerate(ps_grid):
+            x, p = x0, p0
+            tan = np.array([0.0, 1.0])
+            d_norm = 1.0
+            lam_local = 0.0; lam_count = 0
+            eta2_t = np.zeros(n_steps + 1)
+
+            for step in range(n_steps):
+                x, p = standard_map_step(x, p, K)
+                tan = tangent_map_step(tan, K, np.cos(x))
+                eta2_t[step + 1] = tan[0]**2
+
+                new_dist = np.sqrt(tan[0]**2 + tan[1]**2)
+                if new_dist > 1e-12 and step > 0:
+                    lam_local += np.log(new_dist / d_norm)
+                    lam_count += 1
+                    tan = tan / new_dist
+                    d_norm = 1.0
+
+            ccl_sum += eta2_t
+            if lam_count > 0:
+                lam_sum += lam_local / lam_count
+                lam_grid[j, i] = lam_local / lam_count
+            count += 1
+
+    avg_ccl = heff**2 * ccl_sum / count
+    avg_lam = lam_sum / count
+    return avg_lam, avg_ccl, lam_grid, xs_grid, ps_grid</pre>
+
+<!-- ========================================================================== -->
+<h2>4. Chirikov Analytical Formula</h2>
+<!-- ========================================================================== -->
+
+<h3>Induction &amp; Deduction</h3>
+<p>
+Chirikov derived an analytical estimate for the LE of the standard map (Eqs. 5&ndash;6):
+\[
+\lambda \approx \frac{1}{2\pi}\int_{-\pi}^{\pi}\ln L(x)\,dx,
+\]
+where
+\[
+L(x)=\Bigg|1+\frac{k(x)}{2}+{\rm sgn}[k(x)]\sqrt{k(x)\Big(1+\frac{k(x)}{4}\Big)}\Bigg|,\quad
+k(x)=K\cos x.
+\]
+At large \(K\), \(L(x)\approx|K\cos x|\) and \(\lambda\approx\ln(K/2)\).
+</p>
+
+<h3>Pseudocode</h3>
+<pre>function chirikov_lambda(K):
+    for each x in linspace(-π, π, 20000):
+        k = K * cos(x)
+        disc = k * (1 + k/4)
+        if disc < 0:
+            L = 1.0         # |ell| = 1 in oscillatory region
+        else:
+            sqrt_term = sqrt(disc)
+            if k > 0:
+                ell = 1 + k/2 + sqrt_term
+            else:
+                ell = 1 + k/2 - sqrt_term
+            L = max(|ell|, 1.0)
+    return trapz(log(L), x) / (2π)</pre>
+
+<h3>Python Implementation</h3>
+<pre>def chirikov_lam(K):
+    def L(x_val):
+        k = K * np.cos(x_val)
+        disc = k * (1 + k / 4)
+        if disc < 0:
+            return 1.0
+        sqrt_term = np.sqrt(disc)
+        if k > 0:
+            ell = 1 + k / 2 + sqrt_term
+        else:
+            ell = 1 + k / 2 - sqrt_term
+        return max(abs(ell), 1.0)
+
+    xs = np.linspace(-np.pi, np.pi, 20000)
+    L_vals = np.array([L(x) for x in xs])
+    return np.trapz(np.log(L_vals), xs) / (2 * np.pi)</pre>
+
+<!-- ========================================================================== -->
+<h2>5. Quantum Floquet Operator</h2>
+<!-- ========================================================================== -->
+
+<h3>Induction &amp; Deduction</h3>
+<p>
+Stroboscopic evolution over one kick is governed by the Floquet operator
+\[
+\hat{F} = e^{-i\hat{p}^2/2\hbar_{\rm eff}}\; e^{-iK\cos(\hat{x})/\hbar_{\rm eff}}.
+\]
+The kinetic part \(e^{-i\hat{p}^2/2\hbar_{\rm eff}}\) is diagonal in the momentum
+basis \(\{|n\rangle\}\) where \(\hat{p}|n\rangle=\hbar_{\rm eff}n|n\rangle\).
+The potential part \(e^{-iK\cos(\hat{x})/\hbar_{\rm eff}}\) is diagonal in the
+position basis, connected via discrete Fourier transform (DFT) with <code>norm='ortho'</code>.
+The momentum basis is truncated to \(n\in[-N,N-1]\) with adaptive
+\(N=2^{\lceil\log_2(\alpha\cdot\max(p_{\rm rms},2\sigma)/\hbar_{\rm eff})\rceil}\).
+</p>
+
+<h3>Pseudocode</h3>
+<pre>function build_floquet_ops(N, heff, K):
+    n = arange(-N, N)
+    Uk = exp(-i·heff·n²/2)           # kinetic, diagonal in momentum
+    Uk_inv = exp(i·heff·n²/2)        # inverse kinetic
+
+    function apply_forward(psi):
+        psi_x = FFT(psi)                   # to position basis
+        psi_x *= exp(-i·K·cos(x)/heff)     # potential step
+        psi = IFFT(psi_x)                  # back to momentum
+        psi *= Uk                          # kinetic step
+        return psi
+
+    function apply_backward(psi):
+        psi *= Uk_inv                      # inverse kinetic
+        psi_x = FFT(psi)                   # to position
+        psi_x *= exp(i·K·cos(x)/heff)      # inverse potential
+        psi = IFFT(psi_x)                  # back to momentum
+        return psi
+
+    return apply_forward, apply_backward</pre>
+
+<h3>Python Implementation</h3>
+<pre>def build_floquet_ops(N, heff, K):
+    n = np.arange(-N, N)
+    Uk = np.exp(-1j * heff * n**2 / 2.0)
+    Uk_inv = np.exp(1j * heff * n**2 / 2.0)
+    xs = 2.0 * np.pi * np.arange(2 * N) / (2 * N)
+    V_phase = K / heff
+
+    def apply_forward(psi):
+        psi_x = np.fft.fft(psi, norm='ortho')
+        psi_x *= np.exp(-1j * V_phase * np.cos(xs))
+        psi = np.fft.ifft(psi_x, norm='ortho')
+        psi *= Uk
+        return psi
+
+    def apply_backward(psi):
+        psi *= Uk_inv
+        psi_x = np.fft.fft(psi, norm='ortho')
+        psi_x *= np.exp(1j * V_phase * np.cos(xs))
+        psi = np.fft.ifft(psi_x, norm='ortho')
+        return psi
+
+    return apply_forward, apply_backward</pre>
+
+<!-- ========================================================================== -->
+<h2>6. Quantum OTOC &amp; Forward&ndash;Backward Evolution</h2>
+<!-- ========================================================================== -->
+
+<h3>Induction &amp; Deduction</h3>
+<p>
+The OTOC is defined as
+\[
+C(t)=-\langle[\hat{p}(t),\hat{p}(0)]^2\rangle,
+\quad B(t)={\rm Re}\,\langle\hat{p}(t)\hat{p}(0)\rangle,
+\]
+where \(\hat{p}(t)=\hat{F}^{-t}\hat{p}\hat{F}^t\).
+</p>
+
+<p>
+The computation uses a <strong>forward&ndash;backward</strong> scheme:
+</p>
+<ol>
+  <li>Forward-evolve \(|\psi_0\rangle\) and \(|\phi_0\rangle=\hat{p}|\psi_0\rangle\),
+      storing all intermediate states \(|\psi(t)\rangle,|\phi(t)\rangle\).</li>
+  <li>For each \(t\), compute
+    \(|\tilde{b}\rangle=\hat{F}^{-t}\hat{p}|\phi(t)\rangle\) and
+    \(|\tilde{a}\rangle=\hat{F}^{-t}\hat{p}|\psi(t)\rangle\) via incremental
+    backward steps, reusing partial results.</li>
+  <li>\(C(t)=\||\tilde{b}\rangle-\hat{p}|\tilde{a}\rangle\|^2\).</li>
+</ol>
+
+<p>
+The cost is \(\mathcal{O}(T^2)\): \(\sum_{k=1}^{T}2(T-k+1)=T(T+1)\) backward
+Floquet applications, each requiring 2 FFTs of size \(2N\).
+Ensemble averaging over \(N_{\rm ens}=2\)&ndash;\(5\) realizations with
+randomly perturbed \(p_0\) reduces statistical fluctuations.
+</p>
+
+<h3>Pseudocode</h3>
+<pre>function compute_otoc_quantum(N, heff, K, n_steps):
+    fwd, bwd, pop = build_floquet_ops(N, heff, K)
+    psi0 = gaussian_state(N, heff, p0=0, sigma=4)
+    phi0 = pop(psi0)                                # p|psi_0>
+
+    # Forward evolution — store all states
+    psi_t[0] = psi0; phi_t[0] = phi0
+    for t in 1..n_steps:
+        psi_t[t] = fwd(psi_t[t-1])
+        phi_t[t] = fwd(phi_t[t-1])
+
+    # B(t) = Re<psi(t)|p|phi(t)>
+    for t in 0..n_steps:
+        B[t] = Re(dot(conj(psi_t[t]), pop(phi_t[t])))
+
+    # C(t) via backward evolution
+    for t in 0..n_steps:
+        b_tilde = pop(phi_t[t])
+        a_tilde = pop(psi_t[t])
+        for _ in 0..t-1:
+            b_tilde = bwd(b_tilde)
+            a_tilde = bwd(a_tilde)
+        diff = b_tilde - pop(a_tilde)
+        C[t] = sum(|diff|^2)
+
+    return C, B</pre>
+
+<h3>Python Implementation</h3>
+<pre>def compute_otoc_quantum(N, heff, K, n_steps, p0=0.0, sigma=4.0):
+    fwd, bwd, apply_p, _, _ = build_floquet_ops(N, heff, K)
+
+    psi0 = gaussian_state(N, heff, p0, sigma)
+    phi0 = apply_p(psi0)
+
+    psi_t = [psi0.copy()]
+    phi_t = [phi0.copy()]
+    psi, phi = psi0.copy(), phi0.copy()
+    for _ in range(n_steps):
+        psi = fwd(psi); phi = fwd(phi)
+        psi_t.append(psi.copy())
+        phi_t.append(phi.copy())
+
+    C = np.zeros(n_steps + 1)
+    B = np.zeros(n_steps + 1)
+
+    for t in range(n_steps + 1):
+        B[t] = np.real(np.dot(np.conj(psi_t[t]),
+                               apply_p(phi_t[t])))
+
+        p_phi_t = apply_p(phi_t[t])
+        b_tilde = p_phi_t.copy()
+        for _ in range(t):
+            b_tilde = bwd(b_tilde)
+
+        p_psi_t = apply_p(psi_t[t])
+        a_tilde = p_psi_t.copy()
+        for _ in range(t):
+            a_tilde = bwd(a_tilde)
+        p_a_tilde = apply_p(a_tilde)
+
+        diff = b_tilde - p_a_tilde
+        C[t] = np.sum(np.abs(diff)**2)
+
+    return C, B</pre>
+
+<!-- ========================================================================== -->
+<h2>7. Ehrenfest-Time Singularity &amp; Logarithmic Derivative</h2>
+<!-- ========================================================================== -->
+
+<h3>Induction &amp; Deduction</h3>
+<p>
+To isolate the CGR and eliminate the \(\hbar_{\rm eff}^2\) prefactor, define the
+logarithmic derivative:
+\[
+d(t) \equiv \frac{\ln C(t) - \ln C(t-1)}{2}.
+\]
+If \(C(t)=Ae^{2\tilde{\lambda}t}\), then \(d(t)=\tilde{\lambda}\) (constant).
+On a log-log plot, \(d(t)\) reveals two regimes:
+</p>
+<ul>
+  <li><strong>\(t < t_{\rm E}\):</strong> flat plateau at \(d(t)\approx\tilde{\lambda}\)
+    — exponential OTOC growth.</li>
+  <li><strong>\(t > t_{\rm E}\):</strong> power-law decay — quantum interference
+    becomes dominant. \(t_{\rm E}\sim|\ln\hbar_{\rm eff}|/\ln(K/2)\).</li>
+</ul>
+
+<h3>Pseudocode</h3>
+<pre>function logarithmic_derivative(C):
+    d[t] = (ln(max(C[t], 1e-300)) - ln(max(C[t-1], 1e-300))) / 2
+    for t in 2..len(C)-1
+    plot t vs d[t] on log-log scale</pre>
+
+<h3>Python Implementation</h3>
+<pre>d_log = np.array([(np.log(max(C[t], 1e-300)) -
+                   np.log(max(C[t-1], 1e-300))) / 2
+                  for t in range(2, len(C))])
+
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots()
+ax.loglog(np.arange(2, len(C)), d_log)
+ax.set_xlabel('t'); ax.set_ylabel('d(t)')</pre>
+
+<!-- ========================================================================== -->
+<h2>8. Long-Time Averaged Correlator (Fig. 4)</h2>
+<!-- ========================================================================== -->
+
+<h3>Induction &amp; Deduction</h3>
+<p>
+At \(\hbar_{\rm eff}=1\), the kicked rotor is <strong>dynamically localized</strong>
+— Anderson localization in momentum space. The long-time average of the two-point
+correlator,
+\[
+\bar{B}_{\tau}(K) = \frac{1}{\tau}\sum_{t=0}^{\tau}{\rm Re}\,\langle\hat{p}(t)\hat{p}(0)\rangle,
+\]
+exhibits a sharp step at \(K_{\rm cr}\approx0.97\), tracing the classical
+regular-to-chaotic transition even deep in the quantum regime.
+</p>
+
+<p>
+At \(\hbar_{\rm eff}=1\), the basis is tiny (\(N=16\), 32 states), making this
+a <strong>forward-only</strong> computation with cost
+\(\mathcal{O}(\tau N\log N)=\mathcal{O}(\tau)\). For \(\tau=3\times10^6\),
+this completes in \(\sim1\)&thinsp;s per \(K\) value.
+</p>
+
+<h3>Pseudocode</h3>
+<pre>function compute_btau(K, tau):
+    N = 16; psi = gaussian(N, heff=1, p0=0, sigma=4)
+    phi = pop(psi)
+    B_sum = 0
+    for t in 0..tau:
+        B_sum += Re(dot(conj(psi), pop(phi)))
+        psi = fwd(psi)          # forward Floquet step
+        phi = fwd(phi)
+    return B_sum / (tau + 1)</pre>
+
+<h3>Python Implementation</h3>
+<pre>def compute_btau(args):
+    K, tau = args
+    M = 2 * N; nv = np.arange(-N, N, dtype=np.float64)
+    Uk = np.exp(-1j * HEFF * nv**2 / 2.0)
+    xs = 2.0 * np.pi * np.arange(M) / M
+    V_phase = K / HEFF
+
+    psi = np.exp(-(HEFF * nv)**2 / (2 * SIGMA**2))
+    psi /= np.sqrt(np.sum(np.abs(psi)**2))
+    phi = (HEFF * nv) * psi.copy()
+    B_sum = 0.0
+
+    for t in range(tau + 1):
+        B_sum += np.real(np.vdot(psi, (HEFF * nv) * phi))
+        px = np.fft.fft(psi, norm='ortho')
+        px *= np.exp(-1j * V_phase * np.cos(xs))
+        psi = np.fft.ifft(px, norm='ortho') * Uk
+        px = np.fft.fft(phi, norm='ortho')
+        px *= np.exp(-1j * V_phase * np.cos(xs))
+        phi = np.fft.ifft(px, norm='ortho') * Uk
+
+    return K, tau, B_sum / (tau + 1)</pre>
+
+<!-- ========================================================================== -->
+<h2>9. Figures &amp; Computational Resources</h2>
+<!-- ========================================================================== -->
+
+<h3>Fig. 3 &mdash; Ehrenfest-Time Singularity</h3>
+<img src="fig3.png" alt="Fig. 3: Logarithmic derivative" style="display:block;margin:0.5rem auto 1rem;max-width:100%;border-radius:3px;">
+
+<table style="width:100%;margin:1.5rem 0;font-size:0.88rem;">
+  <tr style="color:var(--muted);"><th style="text-align:left;font-weight:normal;">Figure</th><th style="text-align:left;font-weight:normal;">Method</th><th style="text-align:right;font-weight:normal;">Max&thinsp;\(N\)</th><th style="text-align:right;font-weight:normal;">Kicks</th><th style="text-align:right;font-weight:normal;">Wall Time</th><th style="text-align:right;font-weight:normal;">Memory</th></tr>
+  <tr style="border-top:1px solid var(--border);"><td>Fig. 1</td><td>Q Fwd&ndash;Bwd</td><td style="text-align:right;">\(2^{21}\)</td><td style="text-align:right;">30</td><td style="text-align:right;">~9 min</td><td style="text-align:right;">~4 GB</td></tr>
+  <tr><td>Fig. 2 (cl.)</td><td>Tangent-map MC</td><td style="text-align:right;">&mdash;</td><td style="text-align:right;">400</td><td style="text-align:right;">~18 s</td><td style="text-align:right;">&lt;1 GB</td></tr>
+  <tr><td>Fig. 2 (q.)</td><td>Q Fwd&ndash;Bwd</td><td style="text-align:right;">\(2^{23}\)</td><td style="text-align:right;">5&ndash;12</td><td style="text-align:right;">~2 min</td><td style="text-align:right;">~50 GB</td></tr>
+  <tr><td>Fig. 3</td><td>Q Fwd&ndash;Bwd</td><td style="text-align:right;">\(2^{20}\)</td><td style="text-align:right;">100</td><td style="text-align:right;">~32 min</td><td style="text-align:right;">~2 GB</td></tr>
+  <tr><td>Fig. 4</td><td>Q Fwd-only</td><td style="text-align:right;">32</td><td style="text-align:right;">\(3\times10^6\)</td><td style="text-align:right;">~80 s</td><td style="text-align:right;">&lt;1 MB</td></tr>
+  <tr style="border-bottom:1px solid var(--border);"><td>Fig. 5</td><td>Classical LE grid</td><td style="text-align:right;">&mdash;</td><td style="text-align:right;">400</td><td style="text-align:right;">~3 min</td><td style="text-align:right;">&lt;1 GB</td></tr>
+</table>
+
+<p>
+Complete reproduction: <strong>~45 min</strong> wall time (parallel, 192 cores),
+<strong>~50 GB</strong> peak memory, &lt;100 MB disk.
+</p>
+
+<h3>Project Files</h3>
+<ul>
+  <li><code>kicked_rotor.py</code> &mdash; Core library: all functions above</li>
+  <li><code>run_fig1.py</code> &mdash; Quantum OTOC \(C(t),B(t)\) (5 \(K\), adaptive basis, 5-ensemble avg)</li>
+  <li><code>run_fig2.py</code> &mdash; Classical LE + CGR (80 \(K\), grid + MC), Chirikov formula</li>
+  <li><code>run_fig2_quantum.py</code> &mdash; Quantum CGR extraction (29 \(K\))</li>
+  <li><code>run_fig2_largeK.py</code> &mdash; Large-\(K\) CGR (\(K=200,500,1000\), \(N\) up to \(2^{26}\))</li>
+  <li><code>run_fig3.py</code> &mdash; Logarithmic derivative (100 kicks, \(K=3,4,7,10\))</li>
+  <li><code>run_fig4.py</code> &mdash; Long-time \(\bar{B}_\tau(K)\) (\(\hbar_{\rm eff}=1\), \(\tau\leq3\times10^6\))</li>
+  <li><code>run_fig5.py</code> &mdash; Classical LE polar representation (\(K=1\))</li>
+</ul>
+
+<p style="margin-top:2rem;color:var(--muted);font-size:0.85rem;">
+  Reproduced on h100 (2&times;Xeon Platinum 8558, 192 cores, 2 TB RAM).
+  Code at <code>afterhours/kicked-rotor/</code>.
+</p>
 </article>
 </body>
 </html>
