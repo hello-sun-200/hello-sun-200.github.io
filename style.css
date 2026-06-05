@@ -249,7 +249,15 @@ article h2 + h3 {
   background: var(--card);
 }
 
-/* Override Leaflet popup to match dark theme */
+/* Darken standard OSM tiles */
+.leaflet-tile {
+  filter: invert(0.92) hue-rotate(180deg) brightness(0.7) saturate(0.4);
+}
+
+.leaflet-container {
+  background: var(--card) !important;
+}
+
 .leaflet-popup-content-wrapper {
   background: var(--card) !important;
   color: var(--text) !important;
