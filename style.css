@@ -240,6 +240,33 @@ article h2 + h3 {
 }
 
 /* ---- back link ---- */
+/* ---- map ---- */
+#map {
+  height: 360px;
+  margin: 2rem 0;
+  border-radius: 3px;
+  border: 1px solid var(--border);
+  background: var(--card);
+}
+
+/* Override Leaflet popup to match dark theme */
+.leaflet-popup-content-wrapper {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border-radius: 3px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
+}
+
+.leaflet-popup-tip {
+  background: var(--card) !important;
+}
+
+.leaflet-popup-content {
+  font-family: "Charter", "Georgia", "Times New Roman", serif !important;
+  font-size: 0.9rem !important;
+  margin: 8px 12px !important;
+}
+
 .back {
   display: inline-block;
   margin-bottom: 1.5rem;
