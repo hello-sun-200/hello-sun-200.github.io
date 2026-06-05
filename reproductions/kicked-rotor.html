@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kicked Rotor Reproduction — ~</title>
+<link rel="stylesheet" href="../style.css">
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<a href="../reproductions.html" class="back">&larr; reproductions</a>
+
+<article>
+  <h1>Numerical Reproduction of Rozenbaum, Ganeshan &amp; Galitski</h1>
+  <p class="authors"><em>Phys. Rev. Lett.</em> 118, 086801 (2017) &middot; May 2026</p>
+
+  <h2>Abstract</h2>
+  <p>
+    We present a complete numerical reproduction of Rozenbaum, Ganeshan &amp; Galitski (2017),
+    which established that the out-of-time-ordered correlator (OTOC) growth rate (CGR) is
+    fundamentally distinct from the classical Lyapunov exponent (LE) in the kicked rotor.
+    All five figures of the original paper are reproduced with full quantum Floquet-operator
+    evolution (Figs. 1&ndash;3), classical tangent-map methods (Figs. 2, 5), and long-time
+    quantum dynamics in the localized regime (Fig. 4).
+  </p>
+
+  <h2>Physical Model</h2>
+
+  <h3>Kicked Rotor Hamiltonian</h3>
+  <p>
+    The dimensionless Hamiltonian of the quantum kicked rotor (QKR) is
+    \[
+    \hat{H} = \frac{\hat{p}^{2}}{2} + K\cos(\hat{x})\,\Delta(t),\qquad
+    \Delta(t)=\sum_{j=-\infty}^{\infty}\delta(t-j),
+    \]
+    where \(\hat{p}=-i\hbar_{\rm eff}\,\partial/\partial\hat{x}\) and \(\hat{x}\in[0,2\pi)\).
+    Two parameters control the physics: the kicking strength \(K\) and the dimensionless
+    effective Planck constant \(\hbar_{\rm eff}\).
+  </p>
+
+  <h3>Classical Standard Map</h3>
+  <p>
+    Integrating Hamilton's equations over one kick yields the Chirikov&ndash;Taylor standard map:
+    \[
+    p_{n+1} = p_n + K\sin x_n,\qquad
+    x_{n+1} = x_n + p_{n+1} \pmod{2\pi}.
+    \]
+    At \(K \lesssim K_{\rm cr}\approx 0.97\) the dynamics are predominantly regular (KAM tori intact);
+    above this threshold global chaos emerges.
+  </p>
+
+  <h3>Quantum Floquet Operator</h3>
+  <p>
+    Stroboscopic evolution over one kick is governed by
+    \[
+    \hat{F}=e^{-i\hat{p}^{2}/2\hbar_{\rm eff}}\;e^{-iK\cos(\hat{x})/\hbar_{\rm eff}},
+    \]
+    applied in split-step: the kinetic part is diagonal in momentum basis \(\{|n\rangle\}\),
+    the potential part is diagonal in position basis via DFT. The initial state is a
+    Gaussian wave packet in momentum space with \(p_0=0\) and \(\sigma=4\).
+  </p>
+
+  <h2>Key Quantities</h2>
+
+  <h3>OTOC and Two-Point Correlator</h3>
+  <p>
+    \[
+    C(t)=-\big\langle\!\big[\hat{p}(t),\hat{p}(0)\big]^{2}\big\rangle,\qquad
+    B(t)={\rm Re}\,\big\langle\hat{p}(t)\,\hat{p}(0)\big\rangle,
+    \]
+    where \(\hat{p}(t)=\hat{F}^{-t}\hat{p}\,\hat{F}^{t}\) is the Heisenberg-picture momentum operator.
+  </p>
+
+  <h3>Classical Lyapunov Exponent</h3>
+  <p>
+    \[
+    \lambda=\bigg\langle\!\!\!\bigg\langle\;
+    \lim_{t\to\infty}\lim_{d(0)\to 0}\frac{1}{t}\ln\frac{d(t)}{d(0)}
+    \bigg\rangle\!\!\!\bigg\rangle,
+    \]
+    where \(d(t)=\sqrt{[\Delta x(t)]^{2}+[\Delta p(t)]^{2}}\).
+    Numerically computed via the tangent map.
+  </p>
+
+  <h3>Classical OTOC and the CGR</h3>
+  <p>
+    The classical correspondence of the OTOC is
+    \[
+    C_{\rm cl}(t)=\hbar_{\rm eff}^{2}\;
+    \bigg\langle\!\!\!\bigg\langle\!
+    \left(\frac{\Delta p(t)}{\Delta x(0)}\right)^{2}\!
+    \bigg\rangle\!\!\!\bigg\rangle\sim e^{2\tilde{\lambda}t}.
+    \]
+    <strong>Crucially,</strong> \(\tilde{\lambda}\neq\lambda\) because of the different order
+    of averaging and logarithm: \(\tilde{\lambda}\sim\ln\langle\cdot\rangle\) versus
+    \(\lambda\sim\langle\ln(\cdot)\rangle\). Jensen's inequality guarantees
+    \(\tilde{\lambda}>\lambda\) for all non-trivial \(K\).
+  </p>
+
+  <h3>Ehrenfest-Time Singularity (Fig. 3)</h3>
+  <p>
+    The logarithmic derivative \(d(t)\equiv[\ln C(t)-\ln C(t-1)]/2\) eliminates the
+    \(\hbar_{\rm eff}^{2}\) prefactor. At \(t < t_{\rm E}\), \(d(t)\approx\tilde{\lambda}\)
+    (flat plateau). At \(t = t_{\rm E}\sim|\ln\hbar_{\rm eff}|/\ln(K/2)\), quantum interference
+    sets in, and \(d(t)\) decays as a power law.
+  </p>
+
+  <h2>Numerical Methods</h2>
+
+  <h3>Classical Computation</h3>
+  <p>
+    Standard map iteration with tangent map for Lyapunov exponent. Monte Carlo sampling
+    (\(2\times10^{5}\) trajectories) for classical CGR, with the critical insight that
+    \(\langle\eta^{2}(t)\rangle\) must be averaged over trajectories <strong>first</strong>,
+    then the log-ratio taken — otherwise the Jensen-inequality error is introduced.
+  </p>
+
+  <h3>Quantum OTOC (Figs. 1&ndash;3)</h3>
+  <p>
+    Forward&ndash;backward Floquet evolution with adaptive basis size:
+    \[
+    N = 2^{\lceil\log_{2}(\alpha\cdot\max(p_{\rm rms},\,2\sigma)/\hbar_{\rm eff})\rceil},
+    \]
+    with safety factor \(\alpha=2.5\)&ndash;\(4\). For \(K=1000\) at \(\hbar_{\rm eff}=2^{-14}\),
+    \(N=2^{26}\approx6.7\times10^{7}\). The \(\mathcal{O}(T^{2})\) cost arises from the nested
+    loop over backward steps: \(\sum_{k=1}^{T}2(T-k+1)=T(T+1)\) backward Floquet applications.
+  </p>
+
+  <h3>Long-Time Correlator (Fig. 4)</h3>
+  <p>
+    At \(\hbar_{\rm eff}=1\) (dynamically localized regime), basis is \(N=16\) (32 states).
+    Forward-only evolution, \(\mathcal{O}(\tau N\log N)=\mathcal{O}(\tau)\) cost.
+    \(\tau=3\times10^{6}\) completes in \(\sim1\) s per \(K\) value.
+  </p>
+
+  <h2>Reproduced Figures</h2>
+
+  <h3>Fig. 1 &mdash; OTOC and Two-Point Correlator</h3>
+  <p>
+    \(\hbar_{\rm eff}=2^{-14}\), \(\sigma=4\), \(p_0=0\). Adaptive basis \(N\in[2^{19},2^{21}]\),
+    30 kicks, 5-ensemble average. Upper panel: \(C(t)\) (semilog). Lower panel: \(B(t)\) (linear).
+    The EW \(\sim9\) min, \(\sim4\) GB memory.
+  </p>
+
+  <h3>Fig. 2 &mdash; CGR versus LE</h3>
+  <p>
+    Four curves: quantum CGR from Floquet-evolved \(C(t)\) at \(\hbar_{\rm eff}=2^{-14}\)
+    (red circles, 29 \(K\) values); classical CGR via tangent-map MC (green solid, 80 \(K\));
+    classical LE via tangent-map grid (blue triangles); Chirikov formula \(\lambda\approx\ln(K/2)\)
+    (black dashed). The CGR exceeds the LE for all \(K\), with difference largest near \(K_{\rm cr}\).
+    Wall time \(\sim2\) min classical + \(\sim2\) min quantum.
+  </p>
+
+  <h3>Fig. 3 &mdash; Ehrenfest-Time Singularity</h3>
+  <p>
+    Logarithmic derivative \(d(t)\) vs. \(t\) (log-log). Flat plateau \(=\) CGR; downward slope
+    \(=\) power-law regime. \(\hbar_{\rm eff}=2^{-14}\). \(K=3\) required 100 kicks
+    (\(N=2^{20}\), \(\sim32\) min) to observe the full transition. \(K=10\) used 30-kick
+    Fig. 1 data.
+  </p>
+
+  <h3>Fig. 4 &mdash; Long-Time Averaged Correlator</h3>
+  <p>
+    \(\bar{B}_{\tau}(K)\) at \(\hbar_{\rm eff}=1\) for \(\tau=3\times10^{4},3\times10^{5},3\times10^{6}\).
+    Sharp step at \(K_{\rm cr}\approx0.97\) traces the classical regular-to-chaotic transition
+    even deep in the quantum regime. Larger \(\tau\) sharpens the step. \(\sim80\) s for 3 \(\tau\) values.
+  </p>
+
+  <h3>Fig. 5 &mdash; Classical LE in Polar Representation</h3>
+  <p>
+    \(\lambda(x,p)\) at \(K=1\) (just above \(K_{\rm cr}\)) on a \(200\times200\) grid,
+    \(p\in[-16,16]\), 400 kicks per point. Polar coordinates \((\theta=x, r=p+16)\)
+    reveal the mixed phase space: regular KAM islands (\(\lambda\approx0\), blue) embedded
+    in a chaotic sea (\(\lambda>0\), yellow). \(\sim3\) min.
+  </p>
+
+  <h2>Resource Assessment</h2>
+  <p>
+    Complete reproduction of all five figures requires approximately
+    <strong>45 minutes</strong> wall time (parallel execution), <strong>50 GB</strong> peak memory
+    (Fig. 2 large-\(K\) quantum tasks), and &lt;100 MB disk. Parallelized over independent
+    \(K\) values and ensemble members via <code>multiprocessing.Pool</code>, with near-linear
+    speedup up to 192 CPU cores on the h100 node.
+  </p>
+
+  <h2>Project Files</h2>
+  <ul>
+    <li><code>kicked_rotor.py</code> &mdash; Core library: standard map, tangent map, Floquet evolution, OTOC, Chirikov formula</li>
+    <li><code>run_fig1.py / plot_fig1.py</code> &mdash; Quantum OTOC \(C(t)\) and \(B(t)\) (5 \(K\), adaptive basis, ensemble avg)</li>
+    <li><code>run_fig2.py / plot_fig2.py</code> &mdash; Classical LE + CGR (80 \(K\), grid + MC), Chirikov formula</li>
+    <li><code>run_fig2_quantum.py</code> &mdash; Quantum CGR extraction (29 \(K\), adaptive kicks and basis)</li>
+    <li><code>run_fig2_largeK.py</code> &mdash; Large-\(K\) quantum CGR (\(K=200,500,1000\), \(N\) up to \(2^{26}\))</li>
+    <li><code>run_fig3.py / plot_fig3.py</code> &mdash; Logarithmic derivative \(d(t)\) (\(K=3,4,7,10\), 100 kicks)</li>
+    <li><code>run_fig4.py / plot_fig4.py</code> &mdash; Long-time averaged correlator (\(\hbar_{\rm eff}=1\), \(\tau\leq3\times10^{6}\))</li>
+    <li><code>run_fig5.py / plot_fig5.py</code> &mdash; Classical LE in polar representation (\(K=1\))</li>
+  </ul>
+</article>
+</body>
+</html>
