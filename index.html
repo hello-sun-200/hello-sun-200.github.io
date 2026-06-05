@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>~</title>
 <link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
 </head>
 <body>
 <header>
@@ -26,55 +25,26 @@
     </p>
   </div>
 
-  <div id="map"></div>
+  <div class="map">
+    <div class="dot" style="left:76.6%;top:36.7%"><span class="label">Weifang</span></div>
+    <div class="dot" style="left:68.5%;top:37.2%"><span class="label">Jinan</span></div>
+    <div class="dot" style="left:81.5%;top:41.2%"><span class="label">Qingdao</span></div>
+    <div class="dot" style="left:85.8%;top:31.4%"><span class="label">Yantai</span></div>
+    <div class="dot" style="left:73.4%;top:47.9%"><span class="label">Linyi</span></div>
+    <div class="dot" style="left:74.7%;top:31.8%"><span class="label">Dongying</span></div>
+    <div class="dot" style="left:65.6%;top:14.6%"><span class="label">Beijing</span></div>
+    <div class="dot" style="left:68.4%;top:40.3%"><span class="label">Tai'an</span></div>
+    <div class="dot" style="left:56.2%;top:89.2%"><span class="label">Shenzhen</span></div>
+    <div class="dot" style="left:56.7%;top:91.7%"><span class="label">Hong Kong</span></div>
+    <div class="dot" style="left:54.2%;top:92.6%"><span class="label">Macau</span></div>
+    <div class="dot" style="left:17.6%;top:50.5%"><span class="label">Deyang</span></div>
+    <div class="dot" style="left:16.3%;top:53.1%"><span class="label">Chengdu</span></div>
+    <div class="dot" style="left:18.7%;top:48.9%"><span class="label">Mianyang</span></div>
+  </div>
 </main>
 
 <footer>
   <a href="https://github.com/hello-sun-200">github</a>
 </footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-<script>
-(function() {
-  var cities = [
-    {name:"Weifang",  lat:36.71,lng:119.16},
-    {name:"Jinan",    lat:36.65,lng:117.12},
-    {name:"Qingdao",  lat:36.07,lng:120.38},
-    {name:"Yantai",   lat:37.48,lng:121.44},
-    {name:"Linyi",    lat:35.10,lng:118.36},
-    {name:"Dongying", lat:37.43,lng:118.67},
-    {name:"Beijing",  lat:39.90,lng:116.41},
-    {name:"Tai'an",   lat:36.20,lng:117.09},
-    {name:"Shenzhen", lat:22.54,lng:114.06},
-    {name:"Hong Kong",lat:22.32,lng:114.17},
-    {name:"Macau",    lat:22.20,lng:113.55},
-    {name:"Deyang",   lat:31.13,lng:104.40},
-    {name:"Chengdu",  lat:30.57,lng:104.07},
-    {name:"Mianyang", lat:31.47,lng:104.68}
-  ];
-
-  var map = L.map('map', {
-    center: [31, 113],
-    zoom: 5,
-    scrollWheelZoom: false,
-    attributionControl: false,
-    zoomControl: false
-  });
-
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 10
-  }).addTo(map);
-
-  cities.forEach(function(c) {
-    L.circleMarker([c.lat, c.lng], {
-      radius: 5,
-      color: '#d4894a',
-      fillColor: '#d4894a',
-      fillOpacity: 0.9,
-      weight: 1.5
-    }).bindPopup(c.name).addTo(map);
-  });
-})();
-</script>
 </body>
 </html>

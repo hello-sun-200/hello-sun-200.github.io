@@ -241,38 +241,47 @@ article h2 + h3 {
 
 /* ---- back link ---- */
 /* ---- map ---- */
-#map {
-  height: 360px;
-  margin: 2rem 0;
-  border-radius: 3px;
-  border: 1px solid var(--border);
+.map {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 2rem auto;
+  aspect-ratio: 5 / 3;
   background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
 }
 
-/* Darken standard OSM tiles */
-.leaflet-tile {
-  filter: invert(0.92) hue-rotate(180deg) brightness(0.7) saturate(0.4);
+.dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  margin-top: -3px;
+  background: var(--accent);
+  border-radius: 50%;
 }
 
-.leaflet-container {
-  background: var(--card) !important;
+.dot:hover {
+  transform: scale(2);
 }
 
-.leaflet-popup-content-wrapper {
-  background: var(--card) !important;
-  color: var(--text) !important;
-  border-radius: 3px !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
+.label {
+  position: absolute;
+  left: 6px;
+  top: -4px;
+  white-space: nowrap;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+  font-family: "Charter", "Georgia", "Times New Roman", serif;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
 }
 
-.leaflet-popup-tip {
-  background: var(--card) !important;
-}
-
-.leaflet-popup-content {
-  font-family: "Charter", "Georgia", "Times New Roman", serif !important;
-  font-size: 0.9rem !important;
-  margin: 8px 12px !important;
+.dot:hover .label {
+  opacity: 1;
 }
 
 .back {
