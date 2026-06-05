@@ -219,23 +219,24 @@ article h2 + h3 {
 
 /* ---- homepage hero ---- */
 .hero {
-  text-align: center;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin: 2rem 0;
 }
 
 .intro-img {
-  display: block;
-  margin: 1.5rem auto;
-  max-width: 280px;
+  width: 200px;
+  flex-shrink: 0;
   border-radius: 3px;
   opacity: 0.85;
 }
 
 .intro {
-  margin: 1.2rem auto 0;
+  margin: 0;
   color: var(--text-dim);
   font-size: 0.95rem;
   line-height: 1.7;
-  max-width: 440px;
 }
 
 /* ---- back link ---- */
