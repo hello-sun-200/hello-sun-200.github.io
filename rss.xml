@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>~</title>
+  <link>https://hello-sun-200.github.io</link>
+  <description>notes on things</description>
+  <atom:link href="https://hello-sun-200.github.io/rss.xml" rel="self" type="application/rss+xml"/>
+  <item>
+    <title>Hello, world</title>
+    <link>https://hello-sun-200.github.io/posts/hello-world.html</link>
+    <pubDate>Fri, 06 Jun 2026 00:00:00 +0000</pubDate>
+  </item>
+</channel>
+</rss>
