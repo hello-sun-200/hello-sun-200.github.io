@@ -239,38 +239,6 @@ article h2 + h3 {
   line-height: 1.7;
 }
 
-/* ---- map ---- */
-#map {
-  width: 100%;
-  max-width: 500px;
-  height: 300px;
-  margin: 2rem auto;
-  border: 1px solid var(--border);
-  border-radius: 3px;
-  overflow: hidden;
-}
-
-.leaflet-container {
-  background: var(--card) !important;
-}
-
-.leaflet-popup-content-wrapper {
-  background: var(--card) !important;
-  color: var(--text) !important;
-  border-radius: 3px !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
-}
-
-.leaflet-popup-tip {
-  background: var(--card) !important;
-}
-
-.leaflet-popup-content {
-  font-family: "Charter", "Georgia", "Times New Roman", serif !important;
-  font-size: 0.88rem !important;
-  margin: 6px 10px !important;
-}
-
 .back {
   display: inline-block;
   margin-bottom: 1.5rem;
