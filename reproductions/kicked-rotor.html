@@ -586,17 +586,51 @@ Complete reproduction: <strong>~45 min</strong> wall time (parallel, 192 cores),
 <strong>~50 GB</strong> peak memory, &lt;100 MB disk.
 </p>
 
-<h3>Project Files</h3>
-<ul>
-  <li><code>kicked_rotor.py</code> &mdash; Core library: all functions above</li>
-  <li><code>run_fig1.py</code> &mdash; Quantum OTOC \(C(t),B(t)\) (5 \(K\), adaptive basis, 5-ensemble avg)</li>
-  <li><code>run_fig2.py</code> &mdash; Classical LE + CGR (80 \(K\), grid + MC), Chirikov formula</li>
-  <li><code>run_fig2_quantum.py</code> &mdash; Quantum CGR extraction (29 \(K\))</li>
-  <li><code>run_fig2_largeK.py</code> &mdash; Large-\(K\) CGR (\(K=200,500,1000\), \(N\) up to \(2^{26}\))</li>
-  <li><code>run_fig3.py</code> &mdash; Logarithmic derivative (100 kicks, \(K=3,4,7,10\))</li>
-  <li><code>run_fig4.py</code> &mdash; Long-time \(\bar{B}_\tau(K)\) (\(\hbar_{\rm eff}=1\), \(\tau\leq3\times10^6\))</li>
-  <li><code>run_fig5.py</code> &mdash; Classical LE polar representation (\(K=1\))</li>
-</ul>
+<h2>Project File Organization</h2>
+
+<pre style="font-size:0.8rem;line-height:1.45;background:none;border:none;padding:0;">
+kicked-rotor/
+│
+├── kicked_rotor.py  ──────────────────────────┐
+│     Core engine: standard map, tangent map,    │
+│     Floquet ops, OTOC, Chirikov, Gaussian      │  imported by
+│                                                 │  all run/plot
+│                                                 │  scripts
+│   ┌── run_fig1.py ──────► fig1_data.npz ──► plot_fig1.py ──► fig1.pdf
+│   │    30 kicks, 5 K,        OTOC C(t),          semilog C(t)
+│   │    adaptive basis        B(t)                + linear B(t)
+│   │
+│   ├── run_fig2.py ──────► fig2_data.npz ──► plot_fig2.py ──► fig2.pdf
+│   │    80 K values,          CGR(λ̃) vs LE(λ)      4 curves:
+│   │    grid + MC             + Chirikov            quantum CGR,
+│   │                                                  classical CGR,
+│   ├── run_fig2_quantum.py ──┐                      classical LE,
+│   │    29 K, adaptive        │                      Chirikov formula
+│   │    kicks & basis         │
+│   │                          │
+│   ├── run_fig2_largeK.py ────┘
+│   │    K=200,500,1000
+│   │    N up to 2²⁶
+│   │
+│   ├── run_fig3.py ──────► fig3_data.npz ──► plot_fig3.py ──► fig3.png
+│   │    100 kicks,             log C(t)/2t           log-log
+│   │    K=3,4,7,10                                    d(t) plateau
+│   │    + reuses fig1                                 → power law
+│   │    for K=3,10
+│   │
+│   ├── run_fig4.py ──────► fig4_data.npz ──► plot_fig4.py ──► fig4.pdf
+│   │    ħ=1, N=16,            B̄_τ(K)                  step function
+│   │    τ=3×10⁴,3×10⁵,        for 3 τ                  at K_cr≈0.97
+│   │    3×10⁶
+│   │
+│   └── run_fig5.py ──────► fig5_data.npz ──► plot_fig5.py ──► fig5.png
+│        K=1, 200×200          λ(x,p) grid              polar LE map
+│        polar coords                                    KAM islands
+│                                                        + chaotic sea
+│
+└── note.tex  ─────────────────────────────────────────────────────
+      Complete writeup: derivations, algorithms, resource assessment
+</pre>
 
 <p style="margin-top:2rem;color:var(--muted);font-size:0.85rem;">
   Reproduced on h100 (2&times;Xeon Platinum 8558, 192 cores, 2 TB RAM).
