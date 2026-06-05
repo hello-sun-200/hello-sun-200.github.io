@@ -37,6 +37,16 @@ header h1 {
   font-style: italic;
 }
 
+nav {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+nav a {
+  font-size: 0.95rem;
+}
+
 .post-list {
   list-style: none;
 }
@@ -125,6 +135,26 @@ article blockquote {
 article img {
   max-width: 100%;
   height: auto;
+}
+
+.book-cover {
+  display: block;
+  margin: 0 auto 1.5rem;
+  max-width: 260px;
+}
+
+.authors {
+  font-style: italic;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+/* Homepage intro image */
+.intro-img {
+  display: block;
+  margin: 2rem auto;
+  max-width: 320px;
+  border-radius: 4px;
 }
 
 .back {

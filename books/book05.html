@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computational Physics: Problem Solving with Python</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<a href="../books.html" class="back">&larr; books</a>
+
+<article>
+<h1>Computational Physics: Problem Solving with Python</h1>
+    <p class="authors">Rubin H. Landau, Manuel J. Páez, and Crisitian C. Bordeianu</p>
+    <p>Fourth Edition</p>
+    <img src="book05.jpg" alt="Book Cover" class="book-cover">
+    <h2>1. Introduction</h2>
+    <h3>1.1 Computational Physics and Science</h3>
+    <h3>1.2 This Book's Subjects</h3>
+    <h3>1.3 Video Lecture Supplements</h3>
+    <h3>1.4 This Book's Codes and Problems</h3>
+    <h3>1.5 Our Language: The Python Ecosystem</h3>
+    <h3>1.6 The Easy Way: Python Distributions</h3>
+    <h2>2. Software Basics</h2>
+    <h3>2.1 Making Computers Obey</h3>
+    <h3>2.2 Computer Number Representations</h3>
+    <h4>2.2.1 IEEE Floating-Point Numbers</h4>
+    <h5>2.2.1.1 Examples of IEEE Representations</h5>
+    <h4>2.2.2 Python and the IEEE 754 Standard</h4>
+    <h3>2.3 Python Mini Tutorial</h3>
+    <h4>2.3.1 Structure and Functions</h4>
+    <h4>2.3.2 Variable Types and Operators</h4>
+    <h4>2.3.3 Boolean and Control Structures</h4>
+    <h4>2.3.4 Python Lists as Arrays</h4>
+    <h4>2.3.5 Python I/O</h4>
+    <h4>2.3.6 Python's Algebraic Tools</h4>
+    <h3>2.4 Programming Warmup</h3>
+    <h4>2.4.1 Program Design</h4>
+    <h4>2.4.2 First Programming Steps</h4>
+    <h4>2.4.3 Over and Underflow Exercises</h4>
+    <h4>2.4.4 Machine Precision</h4>
+    <h4>2.4.5 Experiment: Your Machine's Precision</h4>
+    <h3>2.5 Python's Visualization Tools</h3>
+    <h4>2.5.1 Visual (VPython)'s 2D Plots</h4>
+    <h4>2.5.2 Matplotlib's 2D Plots</h4>
+    <h4>2.5.3 Matplotlib's 3D Surface Plots</h4>
+    <h4>2.5.4 Matplotlib's Animations</h4>
+    <h3>2.6 Plotting Exercises</h3>
+    <h3>2.7 Code Listings</h3>
+    <h2>3. Errors and Uncertainties</h2>
+    <h3>3.1 Types of Errors</h3>
+    <h4>3.1.1 Courting Disaster: Subtractive Cancelation</h4>
+    <h5>3.1.1.1 Subtractive Cancelation Exercises</h5>
+    <h4>3.1.2 Round-Off Errors</h4>
+    <h4>3.1.3 Round-Off Error Accumulation</h4>
+    <h3>3.2 Experimental Error Investigation</h3>
+    <h3>3.3 Errors with Power Series</h3>
+    <h4>3.3.1 Implementation and Assessment</h4>
+    <h4>3.3.2 Error in Specular Reflection</h4>
+    <h3>3.4 Errors in Bessel Functions</h3>
+    <h4>3.4.1 Numerical Recursion (Method)</h4>
+    <h4>3.4.2 Implementation and Assessment: Recursion Relations</h4>
+    <h3>3.5 Code Listing</h3>
+    <h2>4. Monte Carlo Simulations</h2>
+    <h3>4.1 Random Numbers</h3>
+    <h4>4.1.1 Random Number Generation</h4>
+    <h4>4.1.2 Computing a Random Sequence</h4>
+    <h3>4.2 Simulating a Random Walk</h3>
+    <h4>4.2.1 Random Walk Implementation</h4>
+    <h4>4.2.2 Random Walks in a Brain</h4>
+    <h4>4.2.3 Random Protein Folding</h4>
+    <h3>4.3 Spontaneous Decay</h3>
+    <h4>4.3.1 Discrete Decay Model</h4>
+    <h4>4.3.2 The Exponential Decay Approximation</h4>
+    <h4>4.3.3 Discrete Decay Simulation</h4>
+    <h4>4.3.4 Decay Implementation and Visualization</h4>
+    <h3>4.4 Testing and Generating Random Distributions</h3>
+    <h3>4.5 Code Listings</h3>
+    <h2>5. Differentiation and Integration</h2>
+    <h3>5.1 Differentiation Algorithms</h3>
+    <h4>5.1.1 Forward Difference</h4>
+    <h4>5.1.2 Central Difference</h4>
+    <h3>5.2 Extrapolated Difference</h3>
+    <h4>5.2.1 Second Derivatives</h4>
+    <h5>5.2.1.1 Assessment</h5>
+    <h3>5.3 Integration Algorithms</h3>
+    <h4>5.3.1 Box Counting</h4>
+    <h4>5.3.2 Trapezoid Rule</h4>
+    <h4>5.3.3 Simpson's Rule</h4>
+    <h4>5.3.4 Simple Integration Error Estimates</h4>
+    <h4>5.3.5 Higher-Order Algorithms</h4>
+    <h3>5.4 Gaussian Quadrature</h3>
+    <h4>5.4.1 Mapping Gaussian Points</h4>
+    <h4>5.4.2 Gaussian Quadrature Derivation</h4>
+    <h3>5.5 Monte Carlo Integrations</h3>
+    <h4>5.5.1 Stone Throwing Implementation</h4>
+    <h4>5.5.2 Integration Error Investigation</h4>
+    <h3>5.6 Mean Value and N-D Integration</h3>
+    <h4>5.6.1 10-D MC Error Investigation</h4>
+    <h4>5.6.2 Implementation: 10-D Monte Carlo Integration</h4>
+    <h3>5.7 MC Variance Reduction</h3>
+    <h3>5.8 Importance Sampling and von Neumann Rejection</h3>
+    <h3>5.9 Code Listings</h3>
+    <h2>6. Trial-and-Error Searching and Data Fitting</h2>
+    <h3>6.1 Quantum Bound States I</h3>
+    <h3>6.2 Bisection Search</h3>
+    <h4>6.2.1 Bisection Exercises</h4>
+    <h3>6.3 Newton-Raphson Search</h3>
+    <h4>6.3.1 Search + Backtracking</h4>
+    <h3>6.4 Magnetization Search</h3>
+    <h3>6.5 Data Fitting</h3>
+    <h4>6.5.1 Lagrange Fitting</h4>
+    <h4>6.5.2 Cubic Spline Interpolation</h4>
+    <h4>6.5.3 Cubic Spline Quadrature</h4>
+    <h3>6.6 Fitting Exponential Decay</h3>
+    <h3>6.7 Least-Squares Fitting</h3>
+    <h4>6.7.1 Least-Squares Implementation</h4>
+    <h4>6.7.2 Linear Quadratic Fit</h4>
+    <h5>6.7.2.1 Linear Quadratic Fit Assessment</h5>
+    <h3>6.8 Nonlinear Fit to a Resonance</h3>
+    <h3>6.9 Code Listings</h3>
+    <h2>7. Matrix Computing and N-D Searching</h2>
+    <h3>7.1 Masses on a String and N-D Searching</h3>
+    <h3>7.2 Matrix Generalities</h3>
+    <h3>7.3 Matrices in Python</h3>
+    <h4>7.3.1 Lists as Arrays</h4>
+    <h4>7.3.2 NumPy Matrices</h4>
+    <h4>7.3.3 NumPy Linear Algebra Library</h4>
+    <h3>7.4 Exercise: Tests Before Use</h3>
+    <h3>7.5 Solution to String Problem</h3>
+    <h3>7.6 Spin States and Hyperfine Structure</h3>
+    <h3>7.7 Speeding Up Matrix Computing</h3>
+    <h4>7.7.1 Vectorization</h4>
+    <h4>7.7.2 Speedup Exercises</h4>
+    <h3>7.8 Code Listing</h3>
+    <h2>8. Differential Equations and Nonlinear Oscillations</h2>
+    <h3>8.1 Nonlinear Oscillators</h3>
+    <h3>8.2 ODE Review</h3>
+    <h4>8.2.1 Order</h4>
+    <h4>8.2.2 Ordinary and Partial</h4>
+    <h4>8.2.3 Linear and Nonlinear</h4>
+    <h4>8.2.4 Initial and Boundary Conditions</h4>
+    <h3>8.3 Dynamic Form of ODEs</h3>
+    <h3>8.4 ODE Algorithms</h3>
+    <h4>8.4.1 Euler's Rule</h4>
+    <h4>8.4.2 Runge-Kutta Rule</h4>
+    <h4>8.4.3 Adams-Bashful-Moulton Predictor-Corrector Rule</h4>
+    <h4>8.4.4 Assessment: rk2 versus rk4 versus rk45</h4>
+    <h3>8.5 Solution for Nonlinear Oscillations</h3>
+    <h4>8.5.1 Precision Assessment via E Conservation</h4>
+    <h3>8.6 Extensions: Nonlinear Resonances, Beats, Friction</h3>
+    <h4>8.6.1 Friction</h4>
+    <h4>8.6.2 Resonances and Beats</h4>
+    <h4>8.6.3 Time-Dependent Forces</h4>
+    <h3>8.7 Code Listings</h3>
+    <h2>9. Fourier Analyses</h2>
+    <h3>9.1 Fourier Series</h3>
+    <h4>9.1.1 Sawtooth and Half-Wave Functions</h4>
+    <h4>9.1.2 Exercises: Fourier Series Summations</h4>
+    <h3>9.2 Fourier Transforms</h3>
+    <h3>9.3 Discrete Fourier Transforms</h3>
+    <h4>9.3.1 Aliasing</h4>
+    <h4>9.3.2 Assessments</h4>
+    <h4>9.3.3 Transforming Nonperiodic Functions</h4>
+    <h3>9.4 Noise Filtering</h3>
+    <h4>9.4.1 Noise Reduction via Autocorrelation</h4>
+    <h4>9.4.2 Autocorrelation Function Exercises</h4>
+    <h4>9.4.3 Filtering with Transforms</h4>
+    <h4>9.4.4 Digital Filters: Windowed Sinc Filters</h4>
+    <h3>9.5 Fast Fourier Transform</h3>
+    <h4>9.5.1 Bit Reversal</h3>
+        <h3>9.6 FFT Implementation</h3>
+        <h3>9.7 FFT Assessment</h3>
+        <h3>9.8 Code Listings</h3>
+        <h2>10. Wavelet and Principal Components Analysis</h2>
+        <h3>10.1 Part I: Wavelet Analysis</h3>
+        <h3>10.2 Wave Packets and Uncertainty Principle</h3>
+        <h4>10.2.1 Wave Packet Exercise</h4>
+        <h3>10.3 Short-Time Fourier Transforms</h3>
+        <h3>10.4 Wavelet Transforms</h3>
+        <h4>10.4.1 Generating Wavelet Basis Functions</h4>
+        <h4>10.4.2 Continuous Wavelet Transforms</h4>
+        <h3>10.5 Discrete Wavelet Transforms</h3>
+        <h4>10.5.1 Pyramid Scheme</h4>
+        <h4>10.5.2 Daubechies Wavelets Filters</h4>
+        <h4>10.5.3 DWT Exercise</h4>
+        <h3>10.6 Part II: Principal Components Analysis</h3>
+        <h4>10.6.1 Multi-dimensional Data Space</h4>
+        <h4>10.6.2 Wonders of the Covariance Matrix</h4>
+        <h4>10.6.3 Demonstration of Principal Component Analysis</h4>
+        <h4>10.6.4 PCA Exercises</h4>
+        <h3>10.7 Code Listings</h3>
+        <h2>11. Neural Networks and Machine Learning</h2>
+        <h3>11.1 Part I: Biological and Artificial Neural Networks</h3>
+        <h4>11.1.1 Artificial Neural Networks</h4>
+        <h3>11.2 A Simple Neural Network</h3>
+        <h4>11.2.1 Coding A Neuron</h4>
+        <h4>11.2.2 Building A Simple Network</h4>
+        <h4>11.2.3 Training A Simple Network</h4>
+        <h4>11.2.4 Decreasing the Error</h4>
+        <h4>11.2.5 Coding and Running A Simple Network</h4>
+        <h3>11.3 A Graphical Deep Net</h3>
+        <h3>11.4 Part II: Machine Learning Software</h3>
+        <h4>11.4.1 TensorFlow Installation and Execution</h4>
+        <h3>11.5 TensorFlow and SkLearn Examples</h3>
+        <h4>11.5.1 Preprocessing with Scikit-learn</h4>
+        <h5>11.5.1.1 Gradient Tape</h5>
+        <h4>11.5.2 Linear Fit to Hubble's Data</h4>
+        <h3>11.6 ML Clustering</h3>
+        <h4>11.6.1 Reading Files with Panda</h4>
+        <h4>11.6.2 Clustering with Perceptrons</h4>
+        <h4>11.6.3 Clustering with Stochastic Gradient Descent</h4>
+        <h3>11.7 Keras: Python's Deep Learning API</h3>
+        <h3>11.8 Image Processing with OpenCV</h3>
+        <h4>11.8.1 Background Subtraction</h4>
+        <h3>11.9 Explore ML Data Repositories</h3>
+        <h3>11.10 Code Listings</h3>
+        <h2>12. Quantum Computing (G. He, Coauthor)</h2>
+        <h3>12.1 Dirac Notation in Quantum Mechanics</h3>
+        <h3>12.2 From Bits to Qubits</h3>
+        <h4>12.2.1 Multiple Qubit States</h4>
+        <h3>12.3 Entangled and Separable States</h3>
+        <h4>12.3.1 Physics Exercise: Two Entangled Dipoles</h4>
+        <h3>12.4 Logic Gates</h3>
+        <h4>12.4.1 1-Qubit Gates</h4>
+        <h4>12.4.2 2-Qubit Gates</h4>
+        <h4>12.4.3 Entanglement via Gates</h4>
+        <h4>12.4.4 3-Qubit Gates</h4>
+        <h3>12.5 An Intro to QC Programming</h3>
+        <h4>12.5.1 Half and Full Adders</h4>
+        <h3>12.6 Accessing the IBM Quantum Computer</h3>
+        <h4>12.6.1 IBM Quantum Composer</h4>
+        <h3>12.7 Qiskit Plus IBM Quantum</h3>
+        <h4>12.7.1 A Full Adder</h4>
+        <h4>12.7.2 IBM Quantum Exercises</h4>
+        <h3>12.8 The Quantum Fourier Transform</h3>
+        <h4>12.8.1 1-Qubit QFT</h4>
+        <h4>12.8.2 2-Qubit QFT</h4>
+        <h4>12.8.3 n-Qubit QFT</h4>
+        <h3>12.9 Oracle + Diffuser = Grover's Search Algorithm</h3>
+        <h4>12.9.1 Grover's Implementation</h4>
+        <h3>12.10 Shor's Factoring</h3>
+        <h3>12.11 Code Listings</h3>
+        <h2>13. ODE Applications; Eigenvalues, Scattering, Trajectories</h2>
+        <h3>13.1 Quantum Eigenvalues for Arbitrary Potentials</h3>
+        <h4>13.1.1 Model: Nucleon in a Box</h4>
+        <h3>13.2 Algorithm: ODE Solver + Search</h3>
+        <h4>13.2.1 Not Recommended: Matchless Searching</h4>
+        <h4>13.2.2 Numerov Algorithm for Schrodinger ODE</h4>
+        <h4>13.2.3 Implementation: Eigenvalues via ODE Solver + Bisection Algorithm</h4>
+        <h4>13.2.4 Explorations</h4>
+        <h3>13.3 Classical Chaotic Scattering</h3>
+        <h4>13.3.1 Model and Theory</h4>
+        <h4>13.3.2 Implementation</h4>
+        <h4>13.3.3 Assessment</h4>
+        <h3>13.4 Projectile Motion with Drag</h3>
+        <h4>13.4.1 Assessment</h4>
+        <h3>13.5 2- and 3-Body Planetary Orbits</h3>
+        <h4>13.5.1 Planets via Two of Newton's Laws</h4>
+        <h4>13.5.2 The Discovery of Neptune</h4>
+        <h3>13.6 Code Listings</h3>
+        <h2>14. Fractals and Statistical Growth Models</h2>
+        <h3>14.1 The Sierpinski Gasket</h3>
+        <h4>14.1.1 Measuring Fractal Dimension</h4>
+        <h3>14.2 Growing Plants</h3>
+        <h4>14.2.1 Self-Affine Connection</h4>
+        <h4>14.2.2 Barnsley's Fern</h4>
+        <h4>14.2.3 Self-Affine Trees</h4>
+        <h3>14.3 Ballistic Deposition</h3>
+        <h3>14.4 Length of British Coastline</h3>
+        <h4>14.4.1 Box Counting Algorithm</h4>
+        <h4>14.4.2 Coastline Exercise</h4>
+        <h3>14.5 Correlated Growth</h3>
+        <h3>14.6 Diffusion-Limited Aggregation</h3>
+        <h4>14.6.1 Fractal of DLA or Pollock</h4>
+        <h3>14.7 Fractals in Bifurcations</h3>
+        <h3>14.8 Cellular Automata Fractals</h3>
+        <h3>14.9 Perlin Noise Adds Realism</h3>
+        <h4>14.9.1 Ray Tracing Algorithms</h4>
+        <h3>14.10 Code Listings</h3>
+        <h2>15. Nonlinear Population Dynamics</h2>
+        <h3>15.1 The Logistic Map, A Bug Population Model</h3>
+        <h4>15.1.1 Exploring Map Properties</h4>
+        <h5>15.1.1.1 Stable Populations</h5>
+        <h4>15.1.2 Fixed Points</h4>
+        <h4>15.1.3 Period Doubling, Bifurcations</h4>
+        <h4>15.1.4 Mapping Implementation</h4>
+        <h3>15.2 Chaos</h3>
+        <h3>15.3 Bifurcation Diagrams</h3>
+        <h4>15.3.1 Bifurcation Diagram Implementation</h4>
+        <h4>15.3.2 Feigenbaum Constants</h4>
+        <h4>15.3.3 Other Maps</h4>
+        <h3>15.4 Measures of Chaos</h3>
+        <h4>15.4.1 Lyapunov Coefficients</h4>
+        <h4>15.4.2 Shannon Entropy</h4>
+        <h3>15.5 Coupled Predator-Prey Models</h3>
+        <h4>15.5.1 Lotka-Volterra Model</h4>
+        <h4>15.5.2 Predator-Prey Chaos</h4>
+        <h4>15.5.3 LVM with Prey Limit</h4>
+        <h4>15.5.4 LVM with Predation Efficiency</h4>
+        <h4>15.5.5 LVM Implementation and Assessment</h4>
+        <h4>15.5.6 Two Predators, One Prey</h4>
+        <h3>15.6 Code Listings</h3>
+        <h2>16. Nonlinear Dynamics of Continuous Systems</h2>
+        <h3>16.1 The Chaotic Pendulum</h3>
+        <h4>16.1.1 Free Pendulum Oscillations</h4>
+        <h4>16.1.2 Analytic Solution as Elliptic Integrals</h4>
+        <h4>16.1.3 Free Pendulum Implementation and Test</h4>
+        <h3>16.2 Phase Space</h3>
+        <h3>16.3 Chaotic Explorations</h3>
+        <h4>16.3.1 Phase Space Without Velocities</h4>
+        <h4>16.3.2 Chaotic Bifurcations</h4>
+        <h4>16.3.3 Fourier or Wavelet Analysis</h4>
+        <h3>16.4 Other Chaotic Systems</h3>
+        <h4>16.4.1 The Double Pendulum</h4>
+        <h4>16.4.2 Billiards</h4>
+        <h4>16.4.3 Multiple Scattering Centers</h4>
+        <h5>16.4.3.1 Hard Disk Scattering</h5>
+        <h4>16.4.4 Lorenz Attractors</h4>
+        <h4>16.4.5 van der Pool Oscillator</h4>
+        <h4>16.4.6 The Duffing Oscillator</h4>
+        <h3>16.5 Code Listings</h3>
+        <h2>17. Thermodynamics Simulations and Feynman Path Integrals</h2>
+        <h3>17.1 An Ising Magnetic Chain</h3>
+        <h4>17.1.1 Statistical Mechanics</h4>
+        <h5>17.1.1.1 Analytic Solution</h5>
+        <h3>17.2 Metropolis Algorithm</h3>
+        <h4>17.2.1 Metropolis Exercise</h4>
+        <h4>17.2.2 Equilibration and Thermodynamic Properties</h4>
+        <h4>17.2.3 Explorations</h4>
+        <h3>17.3 Fast Equilibration via Wang-Landau Sampling</h3>
+        <h4>17.3.1 WLS Implementation</h4>
+        <h3>17.4 Path Integral Quantum Mechanics</h3>
+        <h4>17.4.1 Bound-State Wave Function</h4>
+        <h3>17.5 Lattice Path Integration</h3>
+        <h4>17.5.1 A Time-Saving Trick</h4>
+        <h3>17.6 Implementation</h3>
+        <h4>17.6.1 Path Integration Exercise</h4>
+        <h4>17.6.2 Quantum Bouncer</h4>
+        <h4>17.6.3 Path Integral Bouncer Exercises</h4>
+        <h3>17.7 Code Listings</h3>
+        <h2>18. Molecular Dynamics Simulations</h2>
+        <h3>18.1 MD Versus Thermodynamics</h3>
+        <h3>18.2 Initial, Boundary, and Large $r$ Conditions</h3>
+        <h3>18.3 Verlet Algorithms</h3>
+        <h4>18.3.1 Implementation and Exercise</h4>
+        <h4>18.3.2 Analysis</h4>
+        <h3>18.4 MD for 16 Particles</h3>
+        <h3>18.5 Code Listing</h3>
+        <h2>19. General Relativity</h2>
+        <h3>19.1 Einstein's Field Equations</h3>
+        <h4>19.1.1 Calculating the Riemann and Ricci Tensors</h4>
+        <h4>19.1.2 Riemann and Ricci Tensor Problems</h4>
+        <h4>19.1.3 Event Horizons</h4>
+        <h3>19.2 Gravitational Deflection of Light</h3>
+        <h4>19.2.1 Gravitational Lensing</h4>
+        <h3>19.3 Planetary Orbits in GR Gravity</h3>
+        <h4>19.3.1 Newton's Potential Corrected</h4>
+        <h4>19.3.2 Orbit Computation via Energy Conservation</h4>
+        <h4>19.3.3 Precession of the Perihelion of Mercury</h4>
+        <h3>19.4 Visualizing Wormholes</h3>
+        <h3>19.5 Problems</h3>
+        <h3>19.6 Code Listings</h3>
+        <h2>20. Integral Equations</h2>
+        <h3>20.1 Nonlocal Potential Binding</h3>
+        <h3>20.2 Momentum-Space Schrödinger Equation</h3>
+        <h4>20.2.1 Integral to Matrix Equations</h4>
+        <h4>20.2.2 Delta</h4>
+        <h4>20.2.3 Wave Function (Exploration)</h4>
+        <h3>20.3 Scattering in Momentum Space</h3>
+        <h4>20.3.1 Schrödinger to Lippmann-Schwinger Equation</h4>
+        <h4>20.3.2 Singular Integral Evaluations</h4>
+        <h4>20.3.3 Singular Integral Equations to Matrix Equations</h4>
+        <h4>20.3.4 Solution</h4>
+        <h4>20.3.5 Exercises</h4>
+        <h4>20.3.6 Scattering Wave Function (Exploration)</h4>
+        <h3>20.4 Code Listings</h3>
+        <h2>21. PDE Review, Electrostatics and Relaxation</h2>
+        <h3>21.1 Review</h3>
+        <h3>21.2 Laplace's Equation</h3>
+        <h4>21.2.1 Fourier Series Solution</h4>
+        <h4>21.2.2 Fourier Series as an Algorithm</h4>
+        <h3>21.3 Finite-Difference Algorithm</h3>
+        <h4>21.3.1 Relaxation and Overrelaxation</h4>
+        <h3>21.4 Alternate Capacitor Problems</h3>
+        <h4>21.4.1 Implementation</h4>
+        <h3>21.5 Electric Field Visualization</h3>
+        <h3>21.6 Code Listings</h3>
+        <h2>22. Heat Flow and Leapfrogging</h2>
+        <h3>22.1 The Parabolic Heat Equation</h3>
+        <h4>22.1.1 Solution as Analytic Expansion</h4>
+        <h3>22.2 Time Stepping (Leapfrog) Algorithm</h3>
+        <h4>22.2.1 Von Neumann Stability Condition</h4>
+        <h4>22.2.2 Implementation</h4>
+        <h4>22.2.3 Assessment and Visualization</h4>
+        <h3>22.3 Newton's Radiative Cooling</h3>
+        <h3>22.4 The Crank-Nicolson Algorithm</h3>
+        <h4>22.4.1 Solution via Tridiagonal Matrix</h4>
+        <h4>22.4.2 Crank-Nicolson Implementation</h4>
+        <h3>22.5 Code Listings</h3>
+        <h2>23. String and Membrane Waves</h2>
+        <h3>23.1 A Vibrating String's Hyperbolic Wave Equation</h3>
+        <h4>23.1.1 Solution as Normal-Mode Expansion</h4>
+        <h3>23.2 Time-Stepping Algorithm</h3>
+        <h3>23.3 von Neumann Stability Analysis</h3>
+        <h4>23.3.1 Implementation and Assessment</h4>
+        <h3>23.4 Beyond The Simple Wave Equation</h3>
+        <h4>23.4.1 Including Friction</h4>
+        <h4>23.4.2 Including Variable Tension and Density</h4>
+        <h4>23.4.3 Waves on Catenary</h4>
+        <h4>23.4.4 Catenary Assessment</h4>
+        <h4>23.4.5 Including Nonlinear Terms</h4>
+        <h3>23.5 Vibrating Membrane (2D Waves)</h3>
+        <h3>23.6 Analytical Solution</h3>
+        <h3>23.7 Numerical Solution</h3>
+        <h3>23.8 Code Listings</h3>
+        <h2>24. Quantum Wave Packets and EM Waves</h2>
+        <h3>24.1 Time-Dependent Schrödinger Equation</h3>
+        <h3>24.2 Split-Time Algorithm</h3>
+        <h4>24.2.1 Implementation</h4>
+        <h5>24.2.1.1 Animation</h5>
+        <h4>24.2.2 Wave Packets in Other Wells</h4>
+        <h3>24.3 Special Schrödinger Algorithm</h3>
+        <h3>24.4 Quantum Chaos</h3>
+        <h4>24.4.1 Quantum Billiards</h4>
+        <h4>24.4.2 Three Disks Scattering</h4>
+        <h3>24.5 E&M Waves: Finite Difference Time Domain</h3>
+        <h3>24.6 Maxwell's Equations</h3>
+        <h3>24.7 Split-Time FDTD</h3>
+        <h4>24.7.1 Implementation and Assessment</h4>
+        <h3>24.8 More E&M Problems</h3>
+        <h4>24.8.1 Circularly Polarized Waves</h4>
+        <h4>24.8.2 Wave Plates</h4>
+        <h4>24.8.3 Algorithm and Exercise</h4>
+        <h4>24.8.4 Twin Lead Transmission Line</h4>
+        <h3>24.9 Code Listings</h3>
+        <h2>25. Shock and Soliton Waves</h2>
+        <h3>25.1 The Continuity and Advection Equations</h3>
+        <h3>25.2 Shock Waves via Burgers' Equation</h3>
+        <h4>25.2.1 Lax-Wendroff Algorithm</h4>
+        <h4>25.2.2 Implementation and Assessment</h4>
+        <h3>25.3 Including Dispersion</h3>
+        <h3>25.4 KdeV Solitons</h3>
+        <h4>25.4.1 Analytic Solution</h4>
+        <h4>25.4.2 Algorithm</h4>
+        <h4>25.4.3 Implementation</h4>
+        <h4>25.4.4 Exploration: Phase Space Solitons and Soliton Crossings</h4>
+        <h3>25.5 Pendulum Chain Solitons</h3>
+        <h4>25.5.1 Including Dispersion</h4>
+        <h3>25.6 Continuum Limit, the Sine-Gordon Equation</h3>
+        <h4>25.6.1 Analytic Solution</h4>
+        <h4>25.6.2 Numeric 2D Solitons (Pulsons)</h4>
+        <h4>25.6.3 Implementation</h4>
+        <h3>25.7 Code Listings</h3>
+        <h2>26. Fluid Hydrodynamics</h2>
+        <h3>26.1 Navier-Stokes Equation</h3>
+        <h3>26.2 Flow Through Parallel Plates</h3>
+        <h3>26.3 Navier-Stokes Difference Equation</h3>
+        <h4>26.3.1 Successive Overrelaxation Algorithm</h4>
+        <h3>26.4 Vorticity Form of Navier-Stokes Equation</h3>
+        <h4>26.4.1 Vorticity Difference Equation</h4>
+        <h4>26.4.2 Beam Boundary Conditions</h4>
+        <h3>26.5 Assessment and Exploration</h3>
+        <h4>26.5.1 Explorations</h4>
+        <h3>26.6 Code Listings</h3>
+        <h2>27. Finite Element Electrostatics</h2>
+        <h3>27.1 The Potential of Two Metal Plates</h3>
+        <h4>27.1.1 Analytic Solution</h4>
+        <h3>27.2 Finite Element Method</h3>
+        <h4>27.2.1 Weak Form of PDE</h4>
+        <h4>27.2.2 Galerkin Spectral Decomposition</h4>
+        <h4>27.2.3 Solution via Linear Equations</h4>
+        <h4>27.2.4 Imposing the Boundary Conditions</h4>
+        <h3>27.3 1D FEM Problems</h3>
+        <h3>27.4 2D FEM Exercises</h3>
+        <h3>27.5 Code Listings</h3>
+        <p class="back-link"><a href="../index.html">Back to Home</a></p>
+</article>
+</body>
+</html>
