@@ -241,6 +241,14 @@ article h2 + h3 {
 }
 
 /* ---- cards ---- */
+.card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: 1fr;
+  gap: 1.2rem;
+  margin: 1.2rem 0;
+}
+
 .card {
   display: flex;
   gap: 1.2rem;
@@ -248,9 +256,7 @@ article h2 + h3 {
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 1.3rem 1.5rem;
-  margin: 1.2rem 0;
   background: var(--card);
-  min-height: 130px;
 }
 
 .card h2 {
