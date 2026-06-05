@@ -1,9 +1,12 @@
 :root {
-  --text: #2c2c2c;
-  --muted: #999;
-  --bg: #fefefe;
-  --accent: #b35c22;
-  --light-accent: #fdf6f0;
+  --text: #c8c3bc;
+  --text-dim: #9a9590;
+  --muted: #6b6560;
+  --bg: #1b1b1b;
+  --card: #222222;
+  --border: #333333;
+  --accent: #d4894a;
+  --light-accent: #2a2420;
 }
 
 * {
@@ -18,7 +21,7 @@ body {
   line-height: 1.75;
   color: var(--text);
   background: var(--bg);
-  max-width: 600px;
+  max-width: 620px;
   margin: 0 auto;
   padding: 4rem 1.5rem 3rem;
 }
@@ -41,7 +44,7 @@ header {
 
 .subtitle {
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.93rem;
   font-style: italic;
   margin-top: 0.15rem;
 }
@@ -52,11 +55,11 @@ nav {
   gap: 1.5rem;
   margin-bottom: 2.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid var(--border);
 }
 
 nav a {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--muted);
   border-bottom: none;
   letter-spacing: 0.03em;
@@ -67,10 +70,10 @@ nav a:hover {
   color: var(--accent);
 }
 
-/* ---- intro on homepage ---- */
+/* ---- intro ---- */
 .intro {
   margin-bottom: 2.5rem;
-  color: #555;
+  color: var(--text-dim);
   font-size: 0.95rem;
   line-height: 1.7;
 }
@@ -84,13 +87,13 @@ nav a:hover {
   display: flex;
   align-items: baseline;
   gap: 1rem;
-  margin-bottom: 0.5rem;
-  padding: 0.35rem 0;
+  margin-bottom: 0.4rem;
+  padding: 0.3rem 0;
 }
 
 .date {
   color: var(--muted);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   white-space: nowrap;
   min-width: 5.8rem;
   font-family: "SF Mono", "Monaco", "Menlo", monospace;
@@ -100,8 +103,8 @@ nav a:hover {
 a {
   color: var(--text);
   text-decoration: none;
-  border-bottom: 1.5px solid #d4c5b5;
-  transition: border-color 0.15s;
+  border-bottom: 1.5px solid #444;
+  transition: border-color 0.15s, color 0.15s;
 }
 
 a:hover {
@@ -123,30 +126,33 @@ article {
 }
 
 article h1 {
-  font-size: 1.6rem;
+  font-size: 1.55rem;
   font-weight: normal;
   margin-bottom: 0.3rem;
   line-height: 1.3;
+  color: #ddd8d0;
 }
 
 article h2 {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: normal;
-  margin: 2.2rem 0 0.5rem;
-  color: #444;
+  margin: 2rem 0 0.6rem;
+  color: #c8c0b4;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #2a2a2a;
 }
 
 article h3 {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: normal;
-  margin: 0.6rem 0 0.3rem;
-  color: #555;
+  margin: 0.35rem 0 0.2rem 0.6rem;
+  color: var(--text-dim);
 }
 
 article h4, article h5 {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: normal;
-  margin: 0.3rem 0 0.2rem 0.8rem;
+  margin: 0.15rem 0 0.1rem 1.4rem;
   color: var(--muted);
 }
 
@@ -163,13 +169,13 @@ article li {
 }
 
 article pre {
-  background: #f8f5f2;
+  background: var(--card);
   padding: 0.9rem 1.1rem;
   border-radius: 3px;
   overflow-x: auto;
   margin-bottom: 1rem;
   font-size: 0.88rem;
-  border: 1px solid #eee;
+  border: 1px solid var(--border);
 }
 
 article code {
@@ -178,16 +184,16 @@ article code {
 }
 
 article :not(pre) > code {
-  background: #f8f5f2;
+  background: var(--card);
   padding: 0.1rem 0.35rem;
   border-radius: 2px;
   font-size: 0.85rem;
 }
 
 article blockquote {
-  border-left: 2px solid #d4c5b5;
+  border-left: 2px solid #444;
   padding-left: 1rem;
-  color: #777;
+  color: var(--muted);
   margin-bottom: 1rem;
   font-style: italic;
 }
@@ -200,24 +206,30 @@ article img {
 /* ---- book pages ---- */
 .book-cover {
   display: block;
-  margin: 1rem auto 1.5rem;
-  max-width: 220px;
+  margin: 1rem auto 1.8rem;
+  max-width: 200px;
   border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 .authors {
   font-style: italic;
   color: var(--muted);
-  margin-bottom: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+/* TOC chapter entries — tighter and cleaner */
+article h2 + h3 {
+  margin-top: 0.2rem;
 }
 
 /* ---- homepage image ---- */
 .intro-img {
   display: block;
   margin: 1.5rem auto 2.5rem;
-  max-width: 280px;
+  max-width: 260px;
   border-radius: 3px;
+  opacity: 0.85;
 }
 
 /* ---- back link ---- */
@@ -237,7 +249,7 @@ article img {
 footer {
   margin-top: 3rem;
   padding-top: 1rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--border);
   display: flex;
   gap: 1.5rem;
 }
