@@ -58,15 +58,15 @@ var map = L.map('map', {
   center: [31, 113],
   zoom: 5,
   minZoom: 5,
-  maxZoom: 5,
+  maxZoom: 6,
   scrollWheelZoom: false,
   attributionControl: false,
   zoomControl: false
 });
 
-L.tileLayer('tiles/{z}_{x}_{y}.png', {
+L.tileLayer('tiles/{z}_{x}_{y}.jpg', {
   minZoom: 5,
-  maxZoom: 5
+  maxZoom: 6
 }).addTo(map);
 
 cities.forEach(function(c) {

@@ -250,11 +250,6 @@ article h2 + h3 {
   overflow: hidden;
 }
 
-/* Darken OSM tiles */
-.leaflet-tile {
-  filter: invert(0.92) hue-rotate(180deg) brightness(0.65) saturate(0.4);
-}
-
 .leaflet-container {
   background: var(--card) !important;
 }
