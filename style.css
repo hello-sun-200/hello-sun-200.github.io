@@ -343,3 +343,18 @@ footer a {
 footer a:hover {
   color: var(--accent);
 }
+
+.top {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.top a {
+  color: var(--muted);
+  font-size: 0.85rem;
+  border-bottom: none;
+}
+
+.top a:hover {
+  color: var(--accent);
+}
