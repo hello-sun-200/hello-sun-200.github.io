@@ -565,25 +565,46 @@ this completes in \(\sim1\)&thinsp;s per \(K\) value.
     return K, tau, B_sum / (tau + 1)</pre>
 
 <!-- ========================================================================== -->
-<h2>9. Figures &amp; Computational Resources</h2>
+<h2>9. Figures</h2>
 <!-- ========================================================================== -->
 
-<h3>Fig. 3 &mdash; Ehrenfest-Time Singularity</h3>
-<img src="fig3.png" alt="Fig. 3: Logarithmic derivative" style="display:block;margin:0.5rem auto 1rem;max-width:100%;border-radius:3px;">
+<figure style="margin:1.5rem 0;">
+  <img src="fig1.png" alt="Fig. 1: OTOC C(t) and B(t)" style="display:block;margin:0.5rem auto;max-width:100%;border-radius:3px;">
+  <figcaption style="text-align:center;color:var(--muted);font-size:0.9rem;"><strong>Fig. 1</strong> — OTOC \(C(t)\) (semilog, top) and two-point correlator \(B(t)\) (bottom) for \(K=0.5,2,3,6,10\). \(\hbar_{\rm eff}=2^{-14}\), 30 kicks.</figcaption>
+</figure>
+
+<figure style="margin:1.5rem 0;">
+  <img src="fig2.png" alt="Fig. 2: CGR vs LE" style="display:block;margin:0.5rem auto;max-width:100%;border-radius:3px;">
+  <figcaption style="text-align:center;color:var(--muted);font-size:0.9rem;"><strong>Fig. 2</strong> — Classical LE \(\lambda\) (blue △), classical CGR \(\tilde{\lambda}\) (green —), quantum CGR (red ○), and Chirikov formula (black - -). Inset: linear-scale zoom \(K\leq 10\).</figcaption>
+</figure>
+
+<figure style="margin:1.5rem 0;">
+  <img src="fig3.png" alt="Fig. 3: Ehrenfest-time singularity" style="display:block;margin:0.5rem auto;max-width:100%;border-radius:3px;">
+  <figcaption style="text-align:center;color:var(--muted);font-size:0.9rem;"><strong>Fig. 3</strong> — Logarithmic derivative \([\ln C(t)-\ln C(t-1)]/2\) vs. \(t\) (log-log). Plateau at CGR for \(t<t_{\rm E}\), power-law decay beyond. \(K=3,10\).</figcaption>
+</figure>
+
+<figure style="margin:1.5rem 0;">
+  <img src="fig4.png" alt="Fig. 4: Long-time averaged correlator" style="display:block;margin:0.5rem auto;max-width:100%;border-radius:3px;">
+  <figcaption style="text-align:center;color:var(--muted);font-size:0.9rem;"><strong>Fig. 4</strong> — Long-time averaged correlator \(\bar{B}_\tau(K)\) for \(\tau=3\times10^4,3\times10^5,3\times10^6\). \(\hbar_{\rm eff}=1\). Sharp step at \(K_{\rm cr}\approx0.97\).</figcaption>
+</figure>
+
+<figure style="margin:1.5rem 0;">
+  <img src="fig5.png" alt="Fig. 5: Classical LE phase space" style="display:block;margin:0.5rem auto;max-width:100%;border-radius:3px;">
+  <figcaption style="text-align:center;color:var(--muted);font-size:0.9rem;"><strong>Fig. 5</strong> — Classical Lyapunov exponent \(\lambda(x,p)\) in polar coordinates (\(\theta=x\), \(r=p+16\)). \(K=1\). KAM tori (blue) and chaotic sea (yellow).</figcaption>
+</figure>
 
 <table style="width:100%;margin:1.5rem 0;font-size:0.88rem;">
   <tr style="color:var(--muted);"><th style="text-align:left;font-weight:normal;">Figure</th><th style="text-align:left;font-weight:normal;">Method</th><th style="text-align:right;font-weight:normal;">Max&thinsp;\(N\)</th><th style="text-align:right;font-weight:normal;">Kicks</th><th style="text-align:right;font-weight:normal;">Wall Time</th><th style="text-align:right;font-weight:normal;">Memory</th></tr>
-  <tr style="border-top:1px solid var(--border);"><td>Fig. 1</td><td>Q Fwd&ndash;Bwd</td><td style="text-align:right;">\(2^{21}\)</td><td style="text-align:right;">30</td><td style="text-align:right;">~9 min</td><td style="text-align:right;">~4 GB</td></tr>
-  <tr><td>Fig. 2 (cl.)</td><td>Tangent-map MC</td><td style="text-align:right;">&mdash;</td><td style="text-align:right;">400</td><td style="text-align:right;">~18 s</td><td style="text-align:right;">&lt;1 GB</td></tr>
-  <tr><td>Fig. 2 (q.)</td><td>Q Fwd&ndash;Bwd</td><td style="text-align:right;">\(2^{23}\)</td><td style="text-align:right;">5&ndash;12</td><td style="text-align:right;">~2 min</td><td style="text-align:right;">~50 GB</td></tr>
-  <tr><td>Fig. 3</td><td>Q Fwd&ndash;Bwd</td><td style="text-align:right;">\(2^{20}\)</td><td style="text-align:right;">100</td><td style="text-align:right;">~32 min</td><td style="text-align:right;">~2 GB</td></tr>
-  <tr><td>Fig. 4</td><td>Q Fwd-only</td><td style="text-align:right;">32</td><td style="text-align:right;">\(3\times10^6\)</td><td style="text-align:right;">~80 s</td><td style="text-align:right;">&lt;1 MB</td></tr>
+  <tr style="border-top:1px solid var(--border);"><td>Fig. 1</td><td>Q Fwd&ndash;Bwd</td><td style="text-align:right;">\(2^{21}\)</td><td style="text-align:right;">30</td><td style="text-align:right;">~15 min</td><td style="text-align:right;">~12 GB</td></tr>
+  <tr><td>Fig. 2 (cl.)</td><td>Tangent-map MC</td><td style="text-align:right;">&mdash;</td><td style="text-align:right;">400</td><td style="text-align:right;">~30 s</td><td style="text-align:right;">&lt;1 GB</td></tr>
+  <tr><td>Fig. 2 (q.)</td><td>Q Fwd&ndash;Bwd</td><td style="text-align:right;">\(2^{26}\)</td><td style="text-align:right;">5&ndash;12</td><td style="text-align:right;">~3 min</td><td style="text-align:right;">~64 GB</td></tr>
+  <tr><td>Fig. 3</td><td>Q Fwd&ndash;Bwd</td><td style="text-align:right;">\(2^{21}\)</td><td style="text-align:right;">60</td><td style="text-align:right;">~30 min</td><td style="text-align:right;">~4 GB</td></tr>
+  <tr><td>Fig. 4</td><td>Q Fwd-only</td><td style="text-align:right;">32</td><td style="text-align:right;">\(3\times10^6\)</td><td style="text-align:right;">~3 min</td><td style="text-align:right;">&lt;1 MB</td></tr>
   <tr style="border-bottom:1px solid var(--border);"><td>Fig. 5</td><td>Classical LE grid</td><td style="text-align:right;">&mdash;</td><td style="text-align:right;">400</td><td style="text-align:right;">~3 min</td><td style="text-align:right;">&lt;1 GB</td></tr>
 </table>
 
-<p>
-Complete reproduction: <strong>~45 min</strong> wall time (parallel, 192 cores),
-<strong>~50 GB</strong> peak memory, &lt;100 MB disk.
+<p style="margin-top:1rem;color:var(--muted);font-size:0.85rem;">
+  Reproduced on h100 (2&times;Xeon Platinum 8558, 192 cores, 2 TB RAM).
 </p>
 
 <h2>Project File Organization</h2>
@@ -596,10 +617,10 @@ rozenbaum2017/
 │     OTOC · Chirikov formula · Gaussian state
 │     imported by all run &amp; plot scripts
 │
-├── <a href="run_fig1.py">run_fig1.py</a>  ──► fig1_data.npz  ──► <a href="plot_fig1.py">plot_fig1.py</a>  ──► fig1.pdf
+├── <a href="run_fig1.py">run_fig1.py</a>  ──► fig1_data.npz  ──► <a href="plot_fig1.py">plot_fig1.py</a>  ──► <a href="fig1.png">fig1.png</a>
 │     30 kicks, 5 K values             OTOC C(t) &amp; B(t)              semilog + linear
 │
-├── <a href="run_fig2.py">run_fig2.py</a>  ──► fig2_data.npz  ──► <a href="plot_fig2.py">plot_fig2.py</a>  ──► fig2.pdf
+├── <a href="run_fig2.py">run_fig2.py</a>  ──► fig2_data.npz  ──► <a href="plot_fig2.py">plot_fig2.py</a>  ──► <a href="fig2.png">fig2.png</a>
 │     80 K, grid + MC                  LE(λ) &amp; CGR(λ̃)               4 curves + inset
 │     <a href="run_fig2_quantum.py">run_fig2_quantum.py</a>               + Chirikov                     quantum &amp; classical
 │     <a href="run_fig2_largeK.py">run_fig2_largeK.py</a>
@@ -608,7 +629,7 @@ rozenbaum2017/
 │     100 kicks, K=3,4,7,10            log C(t)/2t                   log-log d(t)
 │     + reuses fig1_data for K=3,10                                   plateau → power law
 │
-├── <a href="run_fig4.py">run_fig4.py</a>  ──► fig4_data.npz  ──► <a href="plot_fig4.py">plot_fig4.py</a>  ──► fig4.pdf
+├── <a href="run_fig4.py">run_fig4.py</a>  ──► fig4_data.npz  ──► <a href="plot_fig4.py">plot_fig4.py</a>  ──► <a href="fig4.png">fig4.png</a>
 │     ħ=1, N=16, τ≤3×10⁶              B̄_τ(K) for 3 τ                step at K_cr ≈ 0.97
 │
 ├── <a href="run_fig5.py">run_fig5.py</a>  ──► fig5_data.npz  ──► <a href="plot_fig5.py">plot_fig5.py</a>  ──► fig5.png
