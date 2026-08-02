@@ -415,7 +415,7 @@ randomly perturbed \(p_0\) reduces statistical fluctuations.
         psi_t[t] = fwd(psi_t[t-1])
         phi_t[t] = fwd(phi_t[t-1])
 
-    # B(t) = Re<psi(t)|p|phi(t)>
+    # B(t) = Re&lt;psi(t)|p|phi(t)&gt;
     for t in 0..n_steps:
         B[t] = Re(dot(conj(psi_t[t]), pop(phi_t[t])))
 
@@ -580,7 +580,7 @@ this completes in \(\sim1\)&thinsp;s per \(K\) value.
 
 <figure style="margin:1.5rem 0;">
   <img src="fig3.png" alt="Fig. 3: Ehrenfest-time singularity" style="display:block;margin:0.5rem auto;max-width:100%;border-radius:3px;">
-  <figcaption style="text-align:center;color:var(--muted);font-size:0.9rem;"><strong>Fig. 3</strong> — Logarithmic derivative \([\ln C(t)-\ln C(t-1)]/2\) vs. \(t\) (log-log). Plateau at CGR for \(t<t_{\rm E}\), power-law decay beyond. \(K=3,10\).</figcaption>
+  <figcaption style="text-align:center;color:var(--muted);font-size:0.9rem;"><strong>Fig. 3</strong> — Logarithmic derivative \([\ln C(t)-\ln C(t-1)]/2\) vs. \(t\) (log-log). Plateau at CGR for \(t&lt;t_{\rm E}\), power-law decay beyond. \(K=3,10\).</figcaption>
 </figure>
 
 <figure style="margin:1.5rem 0;">
