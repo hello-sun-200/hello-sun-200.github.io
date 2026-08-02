@@ -98,28 +98,11 @@ nav a:hover {
   letter-spacing: -0.02em;
 }
 
-.trajectory {
-  display: grid;
-  gap: 0.68rem;
-  max-width: 640px;
-}
-
-.trajectory p {
-  display: grid;
-  grid-template-columns: 3rem minmax(0, 1fr);
-  gap: 0.8rem;
+.home-intro > p:last-child {
+  max-width: 610px;
   color: var(--text-dim);
   font-size: 0.9rem;
   line-height: 1.65;
-}
-
-.trajectory span {
-  padding-top: 0.08rem;
-  color: var(--accent);
-  font-family: "SF Mono", "Monaco", "Menlo", monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
 }
 
 .home-section {
