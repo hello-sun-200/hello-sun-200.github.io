@@ -85,22 +85,41 @@ nav a:hover {
 /* ---- homepage ---- */
 .home-intro {
   max-width: 650px;
-  margin: 3.2rem 0 3.6rem;
+  margin: 3.2rem 0 3.4rem;
 }
 
 .home-intro h2 {
   max-width: 620px;
-  margin: 0.3rem 0 1rem;
+  margin: 0 0 1rem;
   color: var(--heading);
-  font-size: clamp(1.7rem, 4.5vw, 2.35rem);
+  font-size: clamp(1.55rem, 4vw, 2rem);
   font-weight: normal;
   line-height: 1.25;
   letter-spacing: -0.02em;
 }
 
-.home-intro > p:last-child {
-  max-width: 610px;
+.trajectory {
+  display: grid;
+  gap: 0.68rem;
+  max-width: 640px;
+}
+
+.trajectory p {
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 0.8rem;
   color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.trajectory span {
+  padding-top: 0.08rem;
+  color: var(--accent);
+  font-family: "SF Mono", "Monaco", "Menlo", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .home-section {
@@ -138,6 +157,40 @@ nav a:hover {
   font-size: 0.7rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+}
+
+.log-list {
+  border-top: 1px solid var(--line-soft);
+}
+
+.log-row {
+  display: grid;
+  grid-template-columns: 5.7rem 6.2rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.72rem 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 0.84rem;
+}
+
+.log-row:hover {
+  border-bottom-color: var(--accent);
+}
+
+.log-row time,
+.log-kind {
+  color: var(--muted);
+  font-family: "SF Mono", "Monaco", "Menlo", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.02em;
+}
+
+.log-kind {
+  text-transform: uppercase;
+}
+
+.log-title {
+  color: var(--text);
+  line-height: 1.5;
 }
 
 .selected-list {
@@ -530,6 +583,15 @@ footer a:hover {
 
   .home-intro {
     margin: 2.4rem 0 3rem;
+  }
+
+  .log-row {
+    grid-template-columns: 5.3rem minmax(0, 1fr);
+    gap: 0.4rem 0.8rem;
+  }
+
+  .log-title {
+    grid-column: 2;
   }
 
   .selected-row {
