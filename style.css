@@ -99,7 +99,7 @@ nav a:hover {
   text-wrap: balance;
 }
 
-.home-intro > p:last-child {
+.home-intro > p {
   max-width: 610px;
   color: var(--text-dim);
   font-size: 0.9rem;
@@ -107,31 +107,8 @@ nav a:hover {
   text-wrap: pretty;
 }
 
-.academic-path {
-  border-top: 1px solid var(--line-soft);
-}
-
-.academic-row {
-  display: grid;
-  grid-template-columns: 5.8rem minmax(0, 1fr);
-  gap: 1rem;
-  padding: 0.72rem 0;
-  border-bottom: 1px solid var(--line-soft);
-}
-
-.academic-row > span {
-  color: var(--accent);
-  font-family: "SF Mono", "Monaco", "Menlo", monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-}
-
-.academic-row p {
-  color: var(--text-dim);
-  font-size: 0.84rem;
-  line-height: 1.55;
-  text-wrap: pretty;
+.home-intro > p + p {
+  margin-top: 0.75rem;
 }
 
 .home-section {
@@ -601,11 +578,6 @@ footer a:hover {
 
   .home-intro {
     margin: 2.4rem 0 3rem;
-  }
-
-  .academic-row {
-    grid-template-columns: 1fr;
-    gap: 0.25rem;
   }
 
   .log-row {
