@@ -313,6 +313,76 @@ article h2 + h3 {
   min-width: 0;
 }
 
+.project-mark {
+  width: 112px;
+  height: 112px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* ---- project detail ---- */
+.quantux-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 2rem;
+  align-items: center;
+  margin: 0.5rem 0 2.5rem;
+}
+
+.eyebrow {
+  margin-bottom: 0.25rem;
+  color: var(--accent);
+  font-family: "SF Mono", "Monaco", "Menlo", monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.project-lede {
+  color: var(--text-dim);
+  font-size: 1.02rem;
+}
+
+.project-links {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.project-links span {
+  margin: 0 0.4rem;
+}
+
+.quantux-mascot {
+  width: 220px;
+  max-height: 260px;
+  object-fit: contain;
+}
+
+.origin-pair {
+  display: grid;
+  grid-template-columns: 155px minmax(0, 1fr);
+  gap: 1.6rem;
+  align-items: start;
+  margin: 1rem 0 1.5rem;
+}
+
+.cover-link {
+  border-bottom: none;
+}
+
+.origin-cover {
+  display: block;
+  width: 155px;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+
+.rights-note {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
 .back {
   display: inline-block;
   margin-bottom: 1.5rem;
@@ -357,4 +427,43 @@ footer a:hover {
 
 .top a:hover {
   color: var(--accent);
+}
+
+@media (max-width: 600px) {
+  body {
+    width: 100%;
+    padding: 2.5rem 1.2rem 2rem;
+  }
+
+  nav {
+    gap: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .hero,
+  .card {
+    flex-direction: column;
+  }
+
+  .intro-img {
+    width: 160px;
+  }
+
+  .quantux-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .quantux-mascot {
+    width: 180px;
+    grid-row: 1;
+  }
+
+  .origin-pair {
+    grid-template-columns: 110px minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .origin-cover {
+    width: 110px;
+  }
 }
