@@ -89,13 +89,14 @@ nav a:hover {
 }
 
 .home-intro h2 {
-  max-width: 620px;
+  max-width: 24ch;
   margin: 0 0 1rem;
   color: var(--heading);
   font-size: clamp(1.55rem, 4vw, 2rem);
   font-weight: normal;
   line-height: 1.25;
   letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .home-intro > p:last-child {
@@ -103,6 +104,34 @@ nav a:hover {
   color: var(--text-dim);
   font-size: 0.9rem;
   line-height: 1.65;
+  text-wrap: pretty;
+}
+
+.academic-path {
+  border-top: 1px solid var(--line-soft);
+}
+
+.academic-row {
+  display: grid;
+  grid-template-columns: 5.8rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.72rem 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.academic-row > span {
+  color: var(--accent);
+  font-family: "SF Mono", "Monaco", "Menlo", monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.academic-row p {
+  color: var(--text-dim);
+  font-size: 0.84rem;
+  line-height: 1.55;
+  text-wrap: pretty;
 }
 
 .home-section {
@@ -148,11 +177,17 @@ nav a:hover {
 
 .log-row {
   display: grid;
-  grid-template-columns: 5.7rem 6.2rem minmax(0, 1fr);
-  gap: 1rem;
-  padding: 0.72rem 0;
+  grid-template-columns: 6.3rem minmax(0, 1fr);
+  gap: 1.2rem;
+  padding: 0.88rem 0;
   border-bottom: 1px solid var(--line-soft);
   font-size: 0.84rem;
+}
+
+.log-meta {
+  display: grid;
+  align-content: start;
+  gap: 0.14rem;
 }
 
 .log-row:hover {
@@ -568,13 +603,19 @@ footer a:hover {
     margin: 2.4rem 0 3rem;
   }
 
-  .log-row {
-    grid-template-columns: 5.3rem minmax(0, 1fr);
-    gap: 0.4rem 0.8rem;
+  .academic-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
   }
 
-  .log-title {
-    grid-column: 2;
+  .log-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .log-meta {
+    display: flex;
+    gap: 0.8rem;
   }
 
   .selected-row {
