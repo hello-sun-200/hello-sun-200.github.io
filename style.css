@@ -42,30 +42,19 @@ header {
   margin-bottom: 1.5rem;
 }
 
-.site-brand {
-  display: inline-flex;
+.site-title-row {
+  display: flex;
   align-items: center;
-  gap: 0.75rem;
-  border-bottom: none;
-}
-
-.site-brand:hover {
-  color: inherit;
+  gap: 0.55rem;
 }
 
 .site-logo {
-  width: 3.15rem;
-  height: 3.15rem;
+  width: 2rem;
+  height: 2.25rem;
   flex: 0 0 auto;
   object-fit: cover;
   border: 1px solid var(--border);
-  border-radius: 50%;
-  box-shadow: 0 1px 4px var(--shadow);
-}
-
-.site-brand-copy {
-  display: grid;
-  gap: 0.05rem;
+  border-radius: 3px;
 }
 
 .site-title {
@@ -73,6 +62,7 @@ header {
   font-size: 1.5rem;
   font-weight: normal;
   letter-spacing: 0.02em;
+  line-height: 1.1;
 }
 
 .site-title a {
