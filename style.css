@@ -42,27 +42,11 @@ header {
   margin-bottom: 1.5rem;
 }
 
-.site-title-row {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-}
-
-.site-logo {
-  width: 2rem;
-  height: 2.25rem;
-  flex: 0 0 auto;
-  object-fit: cover;
-  border: 1px solid var(--border);
-  border-radius: 3px;
-}
-
 .site-title {
   color: var(--accent);
   font-size: 1.5rem;
   font-weight: normal;
   letter-spacing: 0.02em;
-  line-height: 1.1;
 }
 
 .site-title a {
@@ -71,7 +55,6 @@ header {
 }
 
 .subtitle {
-  display: block;
   color: var(--muted);
   font-size: 0.93rem;
   font-style: italic;
