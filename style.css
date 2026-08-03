@@ -88,15 +88,32 @@ nav a:hover {
   margin: 3.2rem 0 3.4rem;
 }
 
+.home-intro-lead {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 5.5rem;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
 .home-intro h2 {
   max-width: 24ch;
-  margin: 0 0 1rem;
+  margin: 0;
   color: var(--heading);
   font-size: clamp(1.55rem, 4vw, 2rem);
   font-weight: normal;
   line-height: 1.25;
   letter-spacing: -0.02em;
   text-wrap: balance;
+}
+
+.home-dog {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 0 2px 8px var(--shadow);
 }
 
 .home-intro > p {
@@ -578,6 +595,12 @@ footer a:hover {
 
   .home-intro {
     margin: 2.4rem 0 3rem;
+  }
+
+  .home-intro-lead {
+    grid-template-columns: minmax(0, 1fr) 4.5rem;
+    gap: 1rem;
+    align-items: start;
   }
 
   .log-row {
