@@ -50,11 +50,11 @@ header {
 
 .site-logo {
   width: 2rem;
-  height: 2.25rem;
+  height: 2rem;
   flex: 0 0 auto;
   object-fit: cover;
   border: 1px solid var(--border);
-  border-radius: 3px;
+  border-radius: 50%;
 }
 
 .site-title {
