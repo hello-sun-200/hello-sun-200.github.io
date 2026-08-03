@@ -42,6 +42,32 @@ header {
   margin-bottom: 1.5rem;
 }
 
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: none;
+}
+
+.site-brand:hover {
+  color: inherit;
+}
+
+.site-logo {
+  width: 3.15rem;
+  height: 3.15rem;
+  flex: 0 0 auto;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  box-shadow: 0 1px 4px var(--shadow);
+}
+
+.site-brand-copy {
+  display: grid;
+  gap: 0.05rem;
+}
+
 .site-title {
   color: var(--accent);
   font-size: 1.5rem;
@@ -55,6 +81,7 @@ header {
 }
 
 .subtitle {
+  display: block;
   color: var(--muted);
   font-size: 0.93rem;
   font-style: italic;
