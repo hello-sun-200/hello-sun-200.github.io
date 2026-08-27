@@ -570,6 +570,20 @@ article blockquote {
   line-height: 1.65;
 }
 
+.travel-stop {
+  margin-top: 0.75rem;
+}
+
+.travel-stop h4 {
+  margin: 0 0 0.12rem;
+  color: var(--text);
+  font-family: "SF Mono", "Monaco", "Menlo", monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 article img {
   max-width: 100%;
   height: auto;
