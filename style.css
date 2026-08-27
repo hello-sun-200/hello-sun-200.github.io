@@ -505,6 +505,15 @@ article blockquote {
   white-space: nowrap;
 }
 
+.food-table td:first-child,
+.food-table td:nth-child(2) {
+  white-space: normal;
+}
+
+.food-table td[rowspan] {
+  white-space: nowrap;
+}
+
 .compact-table {
   margin-top: 0.45rem;
 }
