@@ -532,6 +532,44 @@ article blockquote {
   font-size: 0.88rem;
 }
 
+/* ---- travel index ---- */
+.travel-list {
+  margin-top: 1rem;
+  border-top: 1px solid var(--line-soft);
+}
+
+.travel-entry {
+  display: grid;
+  grid-template-columns: 6.5rem minmax(0, 1fr);
+  gap: 1.3rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.travel-meta {
+  display: grid;
+  align-content: start;
+  gap: 0.15rem;
+  color: var(--muted);
+  font-family: "SF Mono", "Monaco", "Menlo", monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+}
+
+.travel-body h3 {
+  margin: 0 0 0.25rem;
+  color: var(--heading);
+  font-size: 1rem;
+}
+
+.travel-body p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
 article img {
   max-width: 100%;
   height: auto;
@@ -809,5 +847,15 @@ footer a:hover {
     margin-right: -0.35rem;
     padding-left: 0.35rem;
     padding-right: 0.35rem;
+  }
+
+  .travel-entry {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+
+  .travel-meta {
+    display: flex;
+    gap: 0.8rem;
   }
 }
